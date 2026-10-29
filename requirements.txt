@@ -1,0 +1,23 @@
+# ==============================================================================
+# FILE: requirements.txt (Python Libraries List)
+# KYU USE HUI HAI: Jab aap 'pip install -r requirements.txt' chalate ho, toh
+# Python niche likhi saari libraries ek sath install kar deta hai.
+# ==============================================================================
+
+# Flask: Humara main web framework jispar backend server aur APIs bani hain
+Flask>=3.0.0
+
+# Flask-SQLAlchemy: Database tables (SQLite / PostgreSQL) ko Python classes se manage karne ke liye ORM
+Flask-SQLAlchemy>=3.1.0
+
+# Flask-Cors: Frontend JavaScript se Backend API calls ko safely allow karne ke liye
+Flask-Cors>=4.0.0
+
+# psycopg2-binary: PostgreSQL database ko Python se connect karne wala official driver
+psycopg2-binary>=2.9.9
+
+# python-dotenv: .env file se secret keys aur DATABASE_URL load karne ke liye
+python-dotenv>=1.0.0
+
+# gunicorn: Production server par deploy karne ke liye (optional for local run)
+gunicorn>=21.2.0
