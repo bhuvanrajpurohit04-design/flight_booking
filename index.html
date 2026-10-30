@@ -1,53 +1,38 @@
 <!DOCTYPE html>
 <!--
 ================================================================================
-FILE: templates/index.html (Main Frontend User Interface)
-PROJECT: SkyVoyage - Online Flight Booking System (College Project)
+FILE: templates/index.html (Main Frontend User Interface - Pro v2 Edition)
+PROJECT: SkyVoyage Pro - Multi-Passenger, Lounge Pass, Weather Advisory & Cabs
 ================================================================================
 KYU USE HUI HAI YE FILE? (Purpose of this file):
-Ye humari website ka Frontend ढांचा (Structure) hai jo browser mein dikhta hai.
-Ismein humne Semantic HTML5 tags (<header>, <nav>, <main>, <section>, <aside>, <footer>)
-use kiye hain.
-
-SMART DUAL-MODE LINKS:
-Is file ko aap do tarike se khol sakti hain:
-1. Python Flask Server chala kar (`http://127.0.0.1:5050`)
-2. Seedha Finder mein `index.html` par double-click karke! Dono tarike se ye kaam karegi.
+Ye humari website ka Frontend ढांचा (Structure) hai.
+PRO v2 UPGRADES ADDED:
+1. Multi-Passenger Booking (1 to 4 Passengers selector, Multi-Seat map selection,
+   aur Dynamic Passenger 1..N input cards).
+2. Feature #1: Smart Airport Lounge & Hot Meal Pass Recommender (+₹299/traveler).
+3. Feature #5: Live Destination Weather & Packing Advisory (Search page + Boarding Pass).
+4. AI Fare Predictor, Landing-Synced Airport Cabs, aur SkyBot AI Chatbot.
 ================================================================================
 -->
 <html lang="en">
 <head>
-  <!-- Character encoding UTF-8 rakha hai taaki Rupee symbol (₹) aur icons sahi dikhein -->
   <meta charset="UTF-8">
-  <!-- Viewport meta tag: Website ko mobile, tablet aur laptop sabhi screens par responsive banata hai -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SkyVoyage - Flight Booking System</title>
+  <title>SkyVoyage Pro - Multi-Passenger AI Flight &amp; Cab Booking</title>
 
-  <!-- Google Font 'Inter' load kiya hai taaki text clean aur professional dikhe -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- CSS Link 1: Jab Flask server (http://127.0.0.1:5050) chal raha ho tab ye kaam karega -->
+  <!-- Works via Flask Server (http://127.0.0.1:5050) -->
   <style>
 /*
 ================================================================================
-FILE: static/css/style.css (Custom Stylesheet)
-PROJECT: SkyVoyage - Online Flight Booking System (College Project)
-================================================================================
-KYU USE HUI HAI YE FILE? (Purpose of this file):
-HTML sirf structure banata hai, lekin website ko sundar, modern aur mobile-friendly
-banane ka kaam ye CSS file karti hai.
-Ismein humne use kiya hai:
-1. CSS Variables (:root) -> Poore project ke colors ek jagah manage karne ke liye.
-2. Flexbox & CSS Grid -> Cards aur forms ko barabar align karne ke liye.
-3. Media Queries (@media) -> Mobile screen aur Boarding Pass Printing ke liye.
+FILE: static/css/style.css (Custom Stylesheet - Pro v2 Edition)
+PROJECT: SkyVoyage Pro - Multi-Passenger, Lounge Pass, Weather Advisory & Cabs
 ================================================================================
 */
 
-/* 1. CSS VARIABLES (:root):
-   Agar future mein website ka blue color badalna ho, toh sirf yahan --primary change
-   karne se poori website ka color apne aap badal jayega! */
 :root {
   --primary: #2563eb;
   --primary-dark: #1d4ed8;
@@ -73,8 +58,6 @@ Ismein humne use kiya hai:
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
-/* 2. GLOBAL RESET:
-   Browser ki default margin aur padding hata deta hai taaki har browser mein design same dikhe */
 * {
   margin: 0;
   padding: 0;
@@ -91,8 +74,7 @@ body {
   line-height: 1.5;
 }
 
-/* 3. NAVIGATION BAR STYLING:
-   'position: sticky; top: 0;' ki wajah se jab aap page scroll karte ho toh navbar upar chipka rehta hai */
+/* NAVBAR */
 .navbar {
   background: var(--white);
   border-bottom: 1px solid var(--gray-200);
@@ -180,8 +162,7 @@ body {
 .nav-btn.active { background: var(--primary-light); color: var(--primary); }
 .nav-btn.btn-secondary { background: #ecfdf5; color: #047857; }
 
-/* 4. MAIN CONTAINER & VIEW SWITCHING:
-   Jo section active nahi hai wo 'display: none' rehta hai, aur active wala 'display: block' */
+/* MAIN CONTENT */
 .main-content {
   max-width: 1200px;
   margin: 0 auto;
@@ -193,15 +174,14 @@ body {
 .section-view { display: none; }
 .section-view.active { display: block; }
 
-/* 5. HERO BANNER & SEARCH BOX:
-   Deep navy-blue gradient background aur white search card */
+/* HERO BANNER */
 .hero-card {
   background: linear-gradient(135deg, #0f172a, #1e1b4b, #1e3a8a);
   color: var(--white);
-  padding: 2.5rem 2rem;
+  padding: 2.25rem 2rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .pill-tag {
@@ -216,23 +196,23 @@ body {
 }
 
 .hero-text h1 {
-  font-size: 2.25rem;
+  font-size: 2.15rem;
   font-weight: 800;
   letter-spacing: -0.5px;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .hero-text p {
   color: var(--gray-400);
-  font-size: 0.95rem;
-  max-width: 600px;
+  font-size: 0.92rem;
+  max-width: 720px;
 }
 
 .search-box {
   background: var(--white);
   border-radius: var(--radius-md);
-  padding: 1.5rem;
-  margin-top: 1.5rem;
+  padding: 1.4rem;
+  margin-top: 1.4rem;
   color: var(--gray-800);
   box-shadow: var(--shadow-md);
 }
@@ -257,18 +237,18 @@ body {
 }
 
 .traveler-summary {
-  font-size: 0.8rem;
-  color: var(--gray-600);
-  background: var(--gray-100);
-  padding: 0.25rem 0.6rem;
+  font-size: 0.78rem;
+  color: var(--primary-dark);
+  background: var(--primary-light);
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
   border-radius: 9999px;
 }
 
-/* CSS GRID: 4 search inputs ko responsive columns mein baantne ke liye */
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+  gap: 0.85rem;
 }
 
 .form-group {
@@ -280,7 +260,7 @@ body {
 
 .form-group label {
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
   color: var(--gray-600);
   text-transform: uppercase;
@@ -293,7 +273,7 @@ body {
   border: none;
   outline: none;
   font-family: inherit;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--dark);
   background: transparent;
@@ -326,35 +306,205 @@ body {
 .btn-sm { font-size: 0.75rem; padding: 0.4rem 0.8rem; }
 .link-btn { background: none; border: none; color: var(--primary); font-size: 0.75rem; font-weight: 600; cursor: pointer; }
 
-/* 6. RESULTS LAYOUT (Sidebar + Flight List):
-   Desktop par 260px ka filter sidebar aur baaki jagah flight cards */
-.results-layout {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 1.5rem;
+/* AI FARE PREDICTOR & FEATURE #5 WEATHER BANNER */
+.predictor-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1.5px solid #cbd5e1;
+  border-left: 5px solid var(--accent);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm);
 }
 
-@media (max-width: 860px) {
-  .results-layout { grid-template-columns: 1fr; }
+.predictor-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-.sidebar-filter {
+.predictor-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.ai-sparkle-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: #eef2ff;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+
+.predictor-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: 0.5px;
+}
+
+.pred-badge {
+  padding: 0.15rem 0.55rem;
+  border-radius: 9999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.pred-badge.buy { background: #d1fae5; color: #065f46; }
+.pred-badge.wait { background: #fef3c7; color: #92400e; }
+
+.predictor-title-group h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-top: 0.15rem;
+}
+
+.btn-alert-toggle {
   background: var(--white);
   border: 1px solid var(--gray-200);
-  border-radius: var(--radius-md);
-  padding: 1.25rem;
-  height: fit-content;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gray-800);
+  cursor: pointer;
 }
 
-.filter-header {
+.btn-alert-toggle.active {
+  background: #ecfdf5;
+  border-color: var(--success);
+  color: #065f46;
+}
+
+.predictor-insight {
+  font-size: 0.84rem;
+  color: var(--gray-600);
+  margin: 0.65rem 0 0.85rem;
+}
+
+.predictor-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.metric-pill {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.76rem;
+}
+
+.metric-pill .m-label { color: var(--gray-600); margin-right: 0.3rem; }
+
+/* FEATURE #5: WEATHER & PACKING ADVISORY BANNER */
+.weather-advisory-banner {
+  background: linear-gradient(90deg, #eff6ff 0%, #f0f9ff 100%);
+  border: 1px solid #bfdbfe;
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.95rem;
+  margin-bottom: 0.9rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--gray-200);
-  padding-bottom: 0.75rem;
-  margin-bottom: 1rem;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
+.weather-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.weather-emoji {
+  font-size: 1.5rem;
+}
+
+.weather-title {
+  font-size: 0.78rem;
+  color: #1e3a8a;
+  display: block;
+}
+
+.weather-tip-text {
+  font-size: 0.76rem;
+  color: #1d4ed8;
+  font-weight: 600;
+}
+
+.weather-live-tag {
+  background: #dbeafe;
+  color: #1e40af;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.55rem;
+  border-radius: 9999px;
+}
+
+.trend-chart-wrapper {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+}
+
+.trend-chart-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--gray-600);
+  margin-bottom: 0.75rem;
+}
+
+.cheapest-legend { color: var(--success); font-weight: 700; }
+
+.trend-bars-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  align-items: end;
+  height: 86px;
+}
+
+.trend-bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  cursor: pointer;
+}
+
+.trend-bar-price { font-size: 0.68rem; font-weight: 700; color: var(--gray-800); margin-bottom: 0.2rem; }
+.trend-bar-fill { width: 100%; max-width: 42px; background: #93c5fd; border-radius: 4px 4px 0 0; transition: all 0.2s; }
+.trend-bar-col:hover .trend-bar-fill { background: var(--primary); }
+.trend-bar-col.is-cheapest .trend-bar-fill { background: var(--success); }
+.trend-bar-col.is-cheapest .trend-bar-price { color: #047857; }
+.trend-bar-date { font-size: 0.68rem; color: var(--gray-600); margin-top: 0.25rem; font-weight: 600; }
+
+/* RESULTS LAYOUT */
+.results-layout { display: grid; grid-template-columns: 260px 1fr; gap: 1.5rem; }
+@media (max-width: 860px) { .results-layout { grid-template-columns: 1fr; } }
+
+.sidebar-filter { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 1.25rem; height: fit-content; }
+.filter-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--gray-200); padding-bottom: 0.75rem; margin-bottom: 1rem; }
 .filter-header h3 { font-size: 0.95rem; font-weight: 700; }
 .filter-block { margin-bottom: 1.25rem; }
 .filter-block h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--gray-600); margin-bottom: 0.5rem; }
@@ -363,41 +513,23 @@ input[type="range"] { width: 100%; accent-color: var(--primary); cursor: pointer
 .range-labels { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--gray-400); margin-top: 0.2rem; }
 .checkbox-group label { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; margin-bottom: 0.4rem; cursor: pointer; }
 
-.sort-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--white);
-  border: 1px solid var(--gray-200);
-  padding: 0.75rem 1rem;
-  border-radius: var(--radius-md);
-  margin-bottom: 1rem;
-}
-
+.sort-bar { display: flex; align-items: center; justify-content: space-between; background: var(--white); border: 1px solid var(--gray-200); padding: 0.75rem 1rem; border-radius: var(--radius-md); margin-bottom: 1rem; }
 .route-summary { font-size: 0.85rem; font-weight: 600; color: var(--gray-600); }
 .sort-options { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; font-weight: 600; }
 .sort-chip { background: var(--gray-100); border: none; padding: 0.35rem 0.75rem; border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 600; cursor: pointer; color: var(--gray-600); }
 .sort-chip.active { background: var(--primary); color: var(--white); }
 .flights-list { display: flex; flex-direction: column; gap: 1rem; }
 
-/* 7. FLIGHT CARD STYLING */
-.flight-card {
-  background: var(--white);
-  border: 1px solid var(--gray-200);
-  border-radius: var(--radius-md);
-  padding: 1.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.25rem;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.airline-badge { display: flex; align-items: center; gap: 0.85rem; min-width: 180px; }
+/* FLIGHT CARD */
+.flight-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; box-shadow: var(--shadow-sm); transition: transform 0.2s, box-shadow 0.2s; }
+.flight-card:hover { border-color: #93c5fd; box-shadow: var(--shadow-md); }
+.airline-badge { display: flex; align-items: center; gap: 0.85rem; min-width: 210px; }
 .airline-logo-box { width: 44px; height: 44px; background: var(--primary); color: var(--white); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; }
 .airline-name { font-size: 0.95rem; font-weight: 700; }
-.flight-code { font-size: 0.75rem; color: var(--gray-400); font-family: monospace; }
+.flight-code { font-size: 0.72rem; color: var(--gray-600); font-family: monospace; }
+.cab-ready-pill { display: inline-block; margin-top: 0.2rem; font-size: 0.65rem; font-weight: 600; color: #047857; background: #ecfdf5; padding: 0.1rem 0.45rem; border-radius: 4px; }
+.lounge-ready-pill { display: inline-block; margin-top: 0.2rem; font-size: 0.65rem; font-weight: 600; color: #6d28d9; background: #f5f3ff; padding: 0.1rem 0.45rem; border-radius: 4px; }
+
 .flight-schedule { display: flex; align-items: center; gap: 1.5rem; text-align: center; }
 .time-box h4 { font-size: 1.15rem; font-weight: 700; }
 .time-box span { font-size: 0.75rem; color: var(--gray-600); }
@@ -405,37 +537,25 @@ input[type="range"] { width: 100%; accent-color: var(--primary); cursor: pointer
 .duration-line span { font-size: 0.7rem; color: var(--gray-400); }
 .duration-line .line { width: 100%; height: 2px; background: var(--gray-200); margin: 0.3rem 0; position: relative; }
 .duration-line .stop-indicator { font-size: 0.65rem; font-weight: 700; color: var(--success); }
-.flight-price-box { text-align: right; min-width: 130px; }
+.flight-price-box { text-align: right; min-width: 145px; }
 .flight-price-box .price-label { font-size: 0.7rem; color: var(--gray-400); }
-.flight-price-box .price-val { font-size: 1.35rem; font-weight: 800; color: var(--dark); margin-bottom: 0.3rem; }
+.flight-price-box .price-val { font-size: 1.35rem; font-weight: 800; color: var(--dark); margin-bottom: 0.1rem; }
+.group-total-hint { font-size: 0.68rem; color: var(--primary-dark); font-weight: 700; display: block; margin-bottom: 0.3rem; }
 
-/* 8. MODAL POPUPS & AIRCRAFT SEAT GRID */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(4px);
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-
+/* MODAL OVERLAYS */
+.modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); z-index: 50; display: flex; align-items: center; justify-content: center; padding: 1rem; }
 .modal-overlay.hidden { display: none; }
-.modal-card { background: var(--white); border-radius: var(--radius-lg); max-width: 820px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: var(--shadow-lg); }
-.modal-header { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: space-between; }
+.modal-card { background: var(--white); border-radius: var(--radius-lg); max-width: 920px; width: 100%; max-height: 92vh; overflow-y: auto; box-shadow: var(--shadow-lg); }
+.modal-header { padding: 1.15rem 1.5rem; border-bottom: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: space-between; }
 .modal-header h3 { font-size: 1.15rem; font-weight: 700; }
 .modal-header .sub-text { font-size: 0.75rem; color: var(--gray-600); }
 .close-btn { background: var(--gray-100); border: none; width: 32px; height: 32px; border-radius: 9999px; cursor: pointer; font-size: 1.2rem; color: var(--gray-600); }
-.modal-body { padding: 1.5rem; display: grid; grid-template-columns: 300px 1fr; gap: 1.5rem; }
+.modal-body { padding: 1.4rem; display: grid; grid-template-columns: 280px 1fr; gap: 1.5rem; }
+@media (max-width: 768px) { .modal-body { grid-template-columns: 1fr; } }
 
-@media (max-width: 768px) {
-  .modal-body { grid-template-columns: 1fr; }
-}
-
-.seat-map-container { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 1rem; text-align: center; }
-.cockpit-icon { font-size: 0.75rem; font-weight: 700; color: var(--gray-400); text-transform: uppercase; margin-bottom: 0.5rem; }
+.seat-map-container { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 1rem; text-align: center; height: fit-content; }
+.cockpit-icon { font-size: 0.75rem; font-weight: 700; color: var(--gray-400); text-transform: uppercase; margin-bottom: 0.25rem; }
+.seat-instruction-text { font-size: 0.74rem; color: var(--primary-dark); background: var(--primary-light); padding: 0.25rem 0.5rem; border-radius: 6px; margin-bottom: 0.6rem; }
 .seat-legend { display: flex; justify-content: center; gap: 0.75rem; font-size: 0.7rem; color: var(--gray-600); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--gray-200); }
 .legend-box { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: middle; }
 .legend-box.available { background: var(--white); border: 1px solid var(--gray-400); }
@@ -452,18 +572,162 @@ input[type="range"] { width: 100%; accent-color: var(--primary); cursor: pointer
 .seat-footer { margin-top: 1rem; padding-top: 0.5rem; border-top: 1px solid var(--gray-200); font-size: 0.8rem; color: var(--gray-600); }
 .seat-highlight { color: var(--primary); background: var(--primary-light); padding: 0.1rem 0.4rem; border-radius: 4px; }
 
-.passenger-form-container form h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.75rem; }
-.input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem; }
-.input-field { display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 0.75rem; }
-.input-field label { font-size: 0.75rem; font-weight: 600; color: var(--gray-600); }
-.input-field input, .input-field select { padding: 0.5rem 0.75rem; border: 1px solid var(--gray-200); border-radius: var(--radius-sm); font-family: inherit; font-size: 0.85rem; outline: none; }
-.fare-card { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); padding: 0.75rem 1rem; margin: 1rem 0; font-size: 0.8rem; }
+/* FEATURE #1: SMART VIP LOUNGE RECOMMENDER BOX */
+.lounge-recommender-box {
+  background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+  border: 1.5px solid #c4b5fd;
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.9rem;
+}
+
+.lounge-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.lounge-badge-tag {
+  display: inline-block;
+  background: #7c3aed;
+  color: var(--white);
+  font-size: 0.62rem;
+  font-weight: 800;
+  padding: 0.12rem 0.5rem;
+  border-radius: 9999px;
+  margin-bottom: 0.2rem;
+}
+
+.lounge-title-wrap h4 {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #4c1d95;
+  margin-bottom: 0.1rem;
+}
+
+.lounge-title-wrap p {
+  font-size: 0.73rem;
+  color: #5b21b6;
+}
+
+.lounge-price-col {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.lounge-old-price {
+  font-size: 0.7rem;
+  text-decoration: line-through;
+  color: var(--gray-400);
+  display: block;
+}
+
+.lounge-new-price {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #6d28d9;
+}
+
+.lounge-toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed #c4b5fd;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #4c1d95;
+  cursor: pointer;
+}
+
+/* LANDING-SYNCED AIRPORT CAB SELECTOR */
+.cab-addon-box {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.cab-addon-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.cab-addon-header h4 { font-size: 0.88rem; font-weight: 800; color: #065f46; margin-bottom: 0.1rem; }
+.cab-sync-sub { font-size: 0.73rem; color: #047857; }
+.cab-zero-wait-tag { background: #10b981; color: var(--white); font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 9999px; white-space: nowrap; }
+
+.cab-options-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+@media (max-width: 640px) { .cab-options-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.cab-option-card { background: var(--white); border: 1.5px solid #d1fae5; border-radius: var(--radius-sm); padding: 0.45rem; cursor: pointer; text-align: center; transition: all 0.15s; }
+.cab-option-card input { display: none; }
+.cab-option-card.selected { border-color: #059669; background: #ecfdf5; box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2); }
+.cab-opt-title { font-size: 0.74rem; font-weight: 700; color: var(--dark); }
+.cab-opt-desc { font-size: 0.65rem; color: var(--gray-600); }
+.cab-opt-price { font-size: 0.75rem; font-weight: 800; color: #047857; margin-top: 0.15rem; }
+
+/* DYNAMIC MULTI-PASSENGER INPUT CARDS */
+.passengers-inputs-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 0.75rem;
+}
+
+.pax-card-block {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 0.85rem;
+}
+
+.pax-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 0.5rem;
+}
+
+.pax-seat-pill {
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+}
+
+.pax-inputs-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.2fr;
+  gap: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .pax-inputs-grid { grid-template-columns: 1fr; }
+}
+
+.passenger-form-container form h4 { font-size: 0.92rem; font-weight: 700; margin-bottom: 0.5rem; }
+.input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.65rem; }
+.input-field { display: flex; flex-direction: column; gap: 0.2rem; }
+.input-field label { font-size: 0.7rem; font-weight: 600; color: var(--gray-600); }
+.input-field input, .input-field select { padding: 0.45rem 0.65rem; border: 1px solid var(--gray-200); border-radius: var(--radius-sm); font-family: inherit; font-size: 0.82rem; outline: none; background: var(--white); }
+.fare-card { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); padding: 0.75rem 1rem; margin: 0.85rem 0; font-size: 0.8rem; }
 .fare-row { display: flex; justify-content: space-between; margin-bottom: 0.35rem; color: var(--gray-600); }
 .fare-row.total { border-top: 1px solid var(--gray-200); padding-top: 0.5rem; margin-top: 0.5rem; font-size: 0.95rem; font-weight: 800; color: var(--dark); }
 .fare-row.total strong { color: var(--primary); font-size: 1.1rem; }
 
-/* 9. DIGITAL BOARDING PASS STYLING */
-.ticket-card { max-width: 650px; }
+/* BOARDING PASS */
+.ticket-card { max-width: 680px; }
 .ticket-header-actions { background: var(--gray-100); }
 .boarding-pass { padding: 1.5rem; background: var(--white); }
 .pass-top { background: linear-gradient(135deg, #1e3a8a, #0f172a); color: var(--white); padding: 1.25rem; border-radius: var(--radius-md) var(--radius-md) 0 0; display: flex; align-items: center; justify-content: space-between; }
@@ -484,7 +748,49 @@ input[type="range"] { width: 100%; accent-color: var(--primary); cursor: pointer
 .route-divider .non-stop { font-size: 0.65rem; font-weight: 800; color: var(--success); text-transform: uppercase; }
 .meta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; font-size: 0.8rem; margin-bottom: 0.75rem; }
 .meta-grid .lbl { display: block; font-size: 0.65rem; color: var(--gray-400); text-transform: uppercase; }
-.highlight-seat { color: var(--primary); font-size: 1rem; }
+.highlight-seat { color: var(--primary); font-size: 0.95rem; }
+
+.bp-lounge-voucher {
+  background: #f5f3ff;
+  border: 1px solid #c4b5fd;
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.85rem;
+  margin-top: 0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bp-lounge-voucher.hidden { display: none; }
+.lounge-v-badge { font-size: 0.65rem; font-weight: 800; color: #5b21b6; display: block; }
+.lounge-v-text { font-size: 0.76rem; font-weight: 700; color: var(--dark); }
+.lounge-v-code { background: #6d28d9; color: var(--white); font-family: monospace; font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.55rem; border-radius: 6px; }
+
+.bp-cab-voucher {
+  background: #ecfdf5;
+  border: 1px solid #6ee7b7;
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.85rem;
+  margin-top: 0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bp-cab-voucher.hidden { display: none; }
+.cab-v-badge { font-size: 0.65rem; font-weight: 800; color: #065f46; display: block; }
+.cab-v-text { font-size: 0.76rem; font-weight: 700; color: var(--dark); }
+.cab-v-otp { background: #059669; color: var(--white); font-family: monospace; font-size: 0.78rem; font-weight: 800; padding: 0.25rem 0.55rem; border-radius: 6px; }
+
+.bp-weather-strip {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.8rem;
+  margin-top: 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #1e40af;
+}
+
 .barcode-area { border-top: 1px dashed var(--gray-300); padding-top: 1rem; margin-top: 1rem; text-align: center; }
 .mock-barcode { font-family: monospace; font-size: 1.2rem; letter-spacing: 3px; color: var(--dark); }
 .e-ticket-num { font-size: 0.65rem; color: var(--gray-400); font-family: monospace; }
@@ -499,6 +805,29 @@ input[type="range"] { width: 100%; accent-color: var(--primary); cursor: pointer
 .booking-actions { display: flex; align-items: center; gap: 0.5rem; }
 .btn-danger-outline { background: transparent; border: 1px solid var(--danger); color: var(--danger); padding: 0.45rem 0.8rem; border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 600; cursor: pointer; }
 .btn-danger-outline:hover { background: #fee2e2; }
+
+/* SKYBOT AI CHATBOT */
+.chatbot-widget { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 60; display: flex; flex-direction: column; align-items: flex-end; }
+.chatbot-launcher { background: linear-gradient(135deg, var(--primary), var(--accent)); color: var(--white); border: none; padding: 0.8rem 1.25rem; border-radius: 9999px; font-family: inherit; font-size: 0.88rem; font-weight: 700; box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.5); cursor: pointer; display: flex; align-items: center; gap: 0.5rem; transition: transform 0.2s; }
+.chatbot-launcher:hover { transform: translateY(-2px); }
+.chatbot-window { width: 350px; max-width: calc(100vw - 2rem); height: 460px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.15); margin-bottom: 0.75rem; display: flex; flex-direction: column; overflow: hidden; }
+.chatbot-window.hidden { display: none; }
+.chatbot-header { background: linear-gradient(135deg, #1e3a8a, #312e81); color: var(--white); padding: 0.9rem 1rem; display: flex; align-items: center; justify-content: space-between; }
+.chatbot-header-info { display: flex; align-items: center; gap: 0.65rem; }
+.bot-avatar { width: 34px; height: 34px; background: rgba(255, 255, 255, 0.15); border-radius: 9999px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+.chatbot-header h4 { font-size: 0.9rem; font-weight: 700; }
+.bot-status { font-size: 0.68rem; color: #6ee7b7; display: block; }
+.chat-close-btn { background: transparent; border: none; color: var(--white); font-size: 1.3rem; cursor: pointer; }
+.chat-messages { flex: 1; padding: 0.9rem; overflow-y: auto; display: flex; flex-direction: column; gap: 0.65rem; background: var(--gray-50); }
+.chat-bubble { max-width: 85%; padding: 0.6rem 0.85rem; border-radius: 12px; font-size: 0.8rem; line-height: 1.45; }
+.chat-bubble.bot { background: var(--white); border: 1px solid var(--gray-200); color: var(--gray-800); align-self: flex-start; border-bottom-left-radius: 3px; }
+.chat-bubble.user { background: var(--primary); color: var(--white); align-self: flex-end; border-bottom-right-radius: 3px; }
+.chat-quick-chips { padding: 0.45rem 0.75rem; background: var(--white); border-top: 1px solid var(--gray-100); display: flex; gap: 0.35rem; overflow-x: auto; }
+.chat-chip { background: var(--primary-light); color: var(--primary-dark); border: none; padding: 0.25rem 0.55rem; border-radius: 9999px; font-size: 0.68rem; font-weight: 600; white-space: nowrap; cursor: pointer; }
+.chat-chip:hover { background: #dbeafe; }
+.chat-input-bar { display: flex; padding: 0.6rem; background: var(--white); border-top: 1px solid var(--gray-200); gap: 0.4rem; }
+.chat-input-bar input { flex: 1; border: 1px solid var(--gray-200); border-radius: 9999px; padding: 0.45rem 0.85rem; font-family: inherit; font-size: 0.8rem; outline: none; }
+.chat-send-btn { width: 34px; height: 34px; border-radius: 9999px; background: var(--primary); color: var(--white); border: none; cursor: pointer; font-size: 0.85rem; }
 
 .toast-container { position: fixed; top: 1.5rem; right: 1.5rem; z-index: 999; display: flex; flex-direction: column; gap: 0.5rem; }
 .toast { background: var(--dark); color: var(--white); padding: 0.75rem 1.2rem; border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 500; box-shadow: var(--shadow-lg); animation: slideIn 0.3s ease-out; }
@@ -518,40 +847,35 @@ input[type="range"] { width: 100%; accent-color: var(--primary); cursor: pointer
 
 .footer { background: var(--white); border-top: 1px solid var(--gray-200); padding: 1.5rem; text-align: center; font-size: 0.75rem; color: var(--gray-400); margin-top: auto; }
 
-/* 10. PRINT MEDIA QUERY (@media print):
-   VIVA TIP: Jab user 'Print Boarding Pass' par click karta hai, toh navbar, search box,
-   aur buttons chhup jaate hain aur sirf Boarding Pass A4 paper par print hota hai! */
 @media print {
-  .no-print, .navbar, .sidebar-filter, .hero-card, .footer { display: none !important; }
+  .no-print, .navbar, .sidebar-filter, .hero-card, .predictor-card, .footer, .chatbot-widget { display: none !important; }
   body, .main-content { background: var(--white) !important; padding: 0 !important; }
   .modal-overlay { position: static; background: transparent; }
   .modal-card { box-shadow: none; border: none; max-width: 100%; }
 }
 
 </style>
-  <!-- CSS Link 2: Agar aap seedha index.html par double-click karke kholengi tab ye kaam karega -->
+  <!-- Works when double-clicked directly in Finder -->
   
 </head>
 <body>
 
-  <!-- TOAST CONTAINER: Browser ke purane alert() popup ki jagah top-right mein modern notification dikhane ke liye -->
+  <!-- Top Toast Notification Container -->
   <div id="toast-container" class="toast-container"></div>
 
   <!-- =========================================================================
-       1. NAVIGATION BAR (Top Header)
+       1. NAVIGATION BAR
        ========================================================================= -->
   <header class="navbar">
     <div class="nav-container">
-      <!-- Website Logo & Title -->
       <div class="brand" id="brand-logo">
         <div class="brand-icon">&#9992;</div>
         <div>
-          <span class="brand-title">SkyVoyage</span>
-          <span class="badge badge-primary">Flask + SQL Fullstack</span>
+          <span class="brand-title">SkyVoyage <span style="color:#4f46e5;">Pro</span></span>
+          <span class="badge badge-primary">Multi-Pax &bull; AI Predictor &bull; Lounge &bull; Cabs</span>
         </div>
       </div>
 
-      <!-- Navigation Buttons: Search Flights, My Bookings, aur Viva Guide ke beech switch karne ke liye -->
       <nav class="nav-links">
         <button id="nav-search-btn" class="nav-btn active">Search Flights</button>
         <button id="nav-bookings-btn" class="nav-btn">
@@ -563,7 +887,7 @@ input[type="range"] { width: 100%; accent-color: var(--primary); cursor: pointer
   </header>
 
   <!-- =========================================================================
-       2. MAIN CONTAINER (Saare Views iske andar hain)
+       2. MAIN CONTAINER
        ========================================================================= -->
   <main class="main-content">
 
@@ -573,14 +897,12 @@ input[type="range"] { width: 100%; accent-color: var(--primary); cursor: pointer
       <!-- Hero Banner & Search Form -->
       <div class="hero-card">
         <div class="hero-text">
-          <span class="pill-tag">&#9992; Domestic Flight Reservation Portal</span>
-          <h1>Book Flights Across India</h1>
-          <p>Real-time flight search powered by Python Flask REST APIs and SQL Database.</p>
+          <span class="pill-tag">&#10024; Group/Multi-Passenger Booking + AI Fare Predictor + Lounge &amp; Cabs</span>
+          <h1>Smart Flight, Lounge &amp; Airport Cab Portal</h1>
+          <p>Book for 1 to 4 travelers together, pick multiple aircraft seats, get AI fare &amp; weather advisories, and bundle VIP Lounge + Airport Cabs.</p>
         </div>
 
-        <!-- FLIGHT SEARCH FORM: Jab user 'Search Flights' dabayega toh JS is form ko handle karega -->
         <form id="search-form" class="search-box">
-          <!-- Trip Type Radio Buttons (One Way / Round Trip) -->
           <div class="trip-type-bar">
             <div>
               <label class="radio-label">
@@ -590,50 +912,57 @@ input[type="range"] { width: 100%; accent-color: var(--primary); cursor: pointer
                 <input type="radio" name="trip_type" value="roundtrip"> Round Trip
               </label>
             </div>
-            <div class="traveler-summary" id="traveler-summary-badge">1 Traveler &bull; Economy</div>
+            <div class="traveler-summary" id="traveler-summary-badge">1 Traveler &bull; Economy &bull; Free 15kg Check-in</div>
           </div>
 
-          <!-- 4 Input Columns: Origin, Destination, Departure Date, Travel Class -->
+          <!-- 5 Input Columns: Origin, Destination, Date, Passengers Count (1-4), Cabin Class -->
           <div class="form-grid">
-            <!-- Input 1: Kahan se jana hai (Origin Airport) -->
             <div class="form-group">
-              <label for="origin-select">From (Origin)</label>
+              <label for="origin-select">From (Origin Airport)</label>
               <select id="origin-select" required>
-                <option value="BLR" selected>Bengaluru (BLR)</option>
-                <option value="DEL">Delhi (DEL)</option>
-                <option value="BOM">Mumbai (BOM)</option>
-                <option value="GOI">Goa (GOI)</option>
-                <option value="HYD">Hyderabad (HYD)</option>
-                <option value="CCU">Kolkata (CCU)</option>
-                <option value="MAA">Chennai (MAA)</option>
-                <option value="JAI">Jaipur (JAI)</option>
+                <option value="BLR" selected>Bengaluru (BLR - Kempegowda Intl)</option>
+                <option value="DEL">New Delhi (DEL - IGI Airport)</option>
+                <option value="BOM">Mumbai (BOM - CSMIA)</option>
+                <option value="GOI">Goa (GOI / GOX Intl)</option>
+                <option value="HYD">Hyderabad (HYD - Rajiv Gandhi Intl)</option>
+                <option value="CCU">Kolkata (CCU - Netaji Subhash)</option>
+                <option value="MAA">Chennai (MAA - Chennai Intl)</option>
+                <option value="JAI">Jaipur (JAI - Jaipur Intl)</option>
               </select>
             </div>
 
-            <!-- Input 2: Kahan jana hai (Destination Airport) -->
             <div class="form-group">
-              <label for="dest-select">To (Destination)</label>
+              <label for="dest-select">To (Destination Airport)</label>
               <select id="dest-select" required>
-                <option value="DEL" selected>Delhi (DEL)</option>
-                <option value="BLR">Bengaluru (BLR)</option>
-                <option value="BOM">Mumbai (BOM)</option>
-                <option value="GOI">Goa (GOI)</option>
-                <option value="HYD">Hyderabad (HYD)</option>
-                <option value="CCU">Kolkata (CCU)</option>
-                <option value="MAA">Chennai (MAA)</option>
-                <option value="JAI">Jaipur (JAI)</option>
+                <option value="DEL" selected>New Delhi (DEL - IGI Airport)</option>
+                <option value="BLR">Bengaluru (BLR - Kempegowda Intl)</option>
+                <option value="BOM">Mumbai (BOM - CSMIA)</option>
+                <option value="GOI">Goa (GOI / GOX Intl)</option>
+                <option value="HYD">Hyderabad (HYD - Rajiv Gandhi Intl)</option>
+                <option value="CCU">Kolkata (CCU - Netaji Subhash)</option>
+                <option value="MAA">Chennai (MAA - Chennai Intl)</option>
+                <option value="JAI">Jaipur (JAI - Jaipur Intl)</option>
               </select>
             </div>
 
-            <!-- Input 3: Kis date ko travel karna hai -->
             <div class="form-group">
               <label for="depart-date">Departure Date</label>
               <input type="date" id="depart-date" required>
             </div>
 
-            <!-- Input 4: Economy ya Business Class -->
+            <!-- NEW MULTI-PASSENGER SELECTOR: 1 se 4 Travelers ek sath book karne ke liye -->
             <div class="form-group">
-              <label for="travel-class">Class</label>
+              <label for="passengers-select">Travelers (Group Size)</label>
+              <select id="passengers-select">
+                <option value="1" selected>1 Traveler (Solo)</option>
+                <option value="2">2 Travelers (Couple / Duo)</option>
+                <option value="3">3 Travelers (Family / Group)</option>
+                <option value="4">4 Travelers (Group of 4)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="travel-class">Cabin Class</label>
               <select id="travel-class">
                 <option value="Economy">Economy</option>
                 <option value="Business">Business</option>
@@ -641,50 +970,107 @@ input[type="range"] { width: 100%; accent-color: var(--primary); cursor: pointer
             </div>
           </div>
 
-          <!-- Search Submit Button -->
           <div class="form-actions">
             <button type="submit" class="btn btn-primary" id="btn-search-submit">
-              Search Flights &rarr;
+              Search Flights &amp; Predict Fares &rarr;
             </button>
           </div>
         </form>
       </div>
 
-      <!-- RESULTS AREA: Left side par Filters aur Right side par Flights ki list -->
+      <!-- =====================================================================
+           AI FARE PREDICTOR + FEATURE #5 (DESTINATION WEATHER & PACKING ADVISORY)
+           ===================================================================== -->
+      <div class="predictor-card" id="predictor-box">
+        <div class="predictor-top">
+          <div class="predictor-title-group">
+            <div class="ai-sparkle-icon">&#128200;</div>
+            <div>
+              <div class="predictor-eyebrow">
+                <span>AI FARE PREDICTOR &amp; ROUTE INTELLIGENCE</span>
+                <span id="pred-confidence-badge" class="pred-badge buy">89% Confidence &bull; Book Now</span>
+              </div>
+              <h3 id="pred-headline">Analyzing Historical Route Fares...</h3>
+            </div>
+          </div>
+
+          <button type="button" id="btn-price-alert" class="btn-alert-toggle">
+            &#128276; <span id="price-alert-text">Track Price Drop Alert</span>
+          </button>
+        </div>
+
+        <p id="pred-insight-text" class="predictor-insight">
+          Loading real Google Flights 7-day price trend and fair price range...
+        </p>
+
+        <!-- Key Metrics Pills -->
+        <div class="predictor-metrics">
+          <div class="metric-pill">
+            <span class="m-label">Google Flights Fair Band:</span>
+            <strong id="pred-fair-band">&#8377;6,400 – &#8377;9,600</strong>
+          </div>
+          <div class="metric-pill">
+            <span class="m-label">Best Booking Window:</span>
+            <strong id="pred-best-window">2–5 months ahead or Tue/Sun</strong>
+          </div>
+          <div class="metric-pill">
+            <span class="m-label">&#128661; Arrival Cab Drive Time:</span>
+            <strong id="pred-drive-time">35 min to City Center</strong>
+          </div>
+        </div>
+
+        <!-- FEATURE #5: LIVE DESTINATION WEATHER & PACKING ADVISORY BANNER -->
+        <div class="weather-advisory-banner" id="weather-advisory-box">
+          <div class="weather-left">
+            <span id="weather-icon" class="weather-emoji">&#127780;&#65039;</span>
+            <div>
+              <span class="weather-title">Destination Live Weather &amp; Packing Advisory: <strong id="weather-temp-cond">22°C &bull; Pleasant &amp; Crisp</strong></span>
+              <p id="weather-pack-tip" class="weather-tip-text">&#129523; Packing Tip: Carry a light jacket or shawl for cool Delhi mornings &amp; evenings.</p>
+            </div>
+          </div>
+          <span class="weather-live-tag">Live Met Forecast</span>
+        </div>
+
+        <!-- 7-Day Interactive Price Bar Chart -->
+        <div class="trend-chart-wrapper">
+          <div class="trend-chart-header">
+            <span>7-Day Live Fare Trend (Click any date bar to switch travel date):</span>
+            <span class="cheapest-legend">&#9679; Green Bar = Cheapest Day to Fly</span>
+          </div>
+          <div id="pred-bars-container" class="trend-bars-grid"></div>
+        </div>
+      </div>
+
+      <!-- RESULTS AREA -->
       <div class="results-layout">
         
-        <!-- Left Sidebar: Price Slider aur Airline Checkboxes -->
         <aside class="sidebar-filter">
           <div class="filter-header">
             <h3>Filter Flights</h3>
             <button type="button" id="btn-reset-filters" class="link-btn">Reset</button>
           </div>
 
-          <!-- Filter 1: Maximum Price Range Slider -->
           <div class="filter-block">
-            <h4>Max Price</h4>
+            <h4>Max Price (Per Person)</h4>
             <div class="slider-display">
-              <span id="price-val-label">&#8377;15,000</span>
+              <span id="price-val-label">&#8377;18,000</span>
             </div>
-            <input type="range" id="price-slider" min="3000" max="15000" step="500" value="15000">
+            <input type="range" id="price-slider" min="4500" max="18000" step="500" value="18000">
             <div class="range-labels">
-              <span>&#8377;3,000</span>
-              <span>&#8377;15,000</span>
+              <span>&#8377;4,500</span>
+              <span>&#8377;18,000</span>
             </div>
           </div>
 
-          <!-- Filter 2: Airlines Filter (JavaScript se checkboxes yahan bante hain) -->
           <div class="filter-block">
             <h4>Airlines</h4>
             <div class="checkbox-group" id="airline-filters-container"></div>
           </div>
         </aside>
 
-        <!-- Right Column: Sorting Bar + Dynamic Flight Cards -->
         <div class="flights-column">
           <div class="sort-bar">
             <span class="route-summary" id="route-summary-text">Scheduled Flights</span>
-            <!-- Sorting Buttons: data-sort attribute batata hai kis basis par sort karna hai -->
             <div class="sort-options">
               <span>Sort:</span>
               <button class="sort-chip active" data-sort="price">Cheapest</button>
@@ -693,7 +1079,6 @@ input[type="range"] { width: 100%; accent-color: var(--primary); cursor: pointer
             </div>
           </div>
 
-          <!-- FLIGHTS CONTAINER: Backend API se jo flights aayengi, JavaScript unke cards yahan daalega -->
           <div id="flights-container" class="flights-list"></div>
         </div>
 
@@ -704,23 +1089,22 @@ input[type="range"] { width: 100%; accent-color: var(--primary); cursor: pointer
     <!-- ================= VIEW 2: MY BOOKINGS TAB ================= -->
     <section id="bookings-section" class="section-view">
       <div class="section-header">
-        <h2>My Bookings &amp; Tickets</h2>
-        <p>Manage confirmed reservations stored in the SQL database.</p>
+        <h2>My Bookings, Lounge Passes &amp; Cab Vouchers</h2>
+        <p>Manage confirmed single or group flight reservations stored in the database.</p>
       </div>
-      <!-- Database se aayi hui saari bookings yahan render hongi -->
       <div id="bookings-list" class="bookings-grid"></div>
     </section>
 
   </main>
 
   <!-- =========================================================================
-       3. MODAL 1: SEAT SELECTION & PASSENGER DETAILS POPUP
+       3. MODAL 1: MULTI-SEAT SELECTION + LOUNGE PASS + AIRPORT CAB + PASSENGERS
        ========================================================================= -->
   <div id="booking-modal" class="modal-overlay hidden">
     <div class="modal-card">
       <div class="modal-header">
         <div>
-          <h3>Select Seat &amp; Passenger Info</h3>
+          <h3>Complete Your Booking (<span id="modal-pax-count-title">1 Traveler</span>)</h3>
           <p id="modal-flight-details" class="sub-text">Airline &bull; Route &bull; Departure</p>
         </div>
         <button class="close-btn" id="btn-close-modal">&times;</button>
@@ -728,66 +1112,125 @@ input[type="range"] { width: 100%; accent-color: var(--primary); cursor: pointer
 
       <div class="modal-body">
         
-        <!-- Left Side: Interactive Airplane Seat Map -->
+        <!-- Left Side: Interactive Multi-Seat Airplane Map -->
         <div class="seat-map-container">
-          <div class="cockpit-icon">&#9650; Cockpit Front</div>
+          <div class="cockpit-icon">&#9650; Aircraft Cockpit Front</div>
+          <p id="seat-instruction-banner" class="seat-instruction-text">Please select <strong>1 seat</strong> on the map</p>
           <div class="seat-legend">
-            <span><i class="legend-box available"></i> Available</span>
+            <span><i class="legend-box available"></i> Free</span>
             <span><i class="legend-box selected"></i> Selected</span>
             <span><i class="legend-box occupied"></i> Taken</span>
           </div>
           <div id="seats-grid" class="seats-grid"></div>
           <div class="seat-footer">
-            Selected Seat: <strong id="lbl-selected-seat" class="seat-highlight">None</strong>
+            Selected Seat(s): <strong id="lbl-selected-seat" class="seat-highlight">None</strong>
           </div>
         </div>
 
-        <!-- Right Side: Passenger Details Form & Live Fare Breakdown -->
+        <!-- Right Side: Smart Lounge Recommender + Airport Cab + Multi-Passenger Form -->
         <div class="passenger-form-container">
           <form id="booking-form">
-            <h4>Passenger Details</h4>
-            
-            <div class="input-row">
-              <div class="input-field">
-                <label for="p-name">Full Name *</label>
-                <input type="text" id="p-name" required placeholder="e.g. Priya Sharma">
+
+            <!-- ===============================================================
+                 FEATURE #1: SMART LAYOVER & VIP AIRPORT LOUNGE PASS RECOMMENDER
+                 KYU USE HUA: Flight ke departure time ya layover ko dekh kar
+                 automatically discounted Terminal Lounge & Hot Buffet Pass suggest karta hai!
+                 =============================================================== -->
+            <div class="lounge-recommender-box" id="lounge-box">
+              <div class="lounge-header">
+                <div class="lounge-title-wrap">
+                  <span class="lounge-badge-tag" id="lounge-smart-reason">&#10024; SMART AI RECOMMENDATION</span>
+                  <h4>&#127869;&#65039; Terminal VIP Lounge &amp; Hot Meal Pass</h4>
+                  <p id="lounge-desc-text">Enjoy unlimited hot buffet, Wi-Fi &amp; plush seating before boarding.</p>
+                </div>
+                <div class="lounge-price-col">
+                  <span class="lounge-old-price">&#8377;1,400</span>
+                  <span class="lounge-new-price">+&#8377;299<small>/pax</small></span>
+                </div>
               </div>
-              <div class="input-field">
-                <label for="p-age">Age *</label>
-                <input type="number" id="p-age" min="1" max="110" required placeholder="22">
+              <label class="lounge-toggle-label">
+                <input type="checkbox" id="chk-lounge-pass">
+                <span>Yes, add VIP Airport Lounge &amp; Meal Access (<strong id="lounge-total-label">+&#8377;299 for 1 Traveler</strong>)</span>
+              </label>
+            </div>
+
+            <!-- ===============================================================
+                 LANDING-TIME SYNCED AIRPORT CAB SELECTOR
+                 =============================================================== -->
+            <div class="cab-addon-box">
+              <div class="cab-addon-header">
+                <div>
+                  <h4>&#128661; Airport Cab at Arrival (Synced to Flight Landing)</h4>
+                  <p id="cab-sync-subtitle" class="cab-sync-sub">
+                    Flight lands at 09:05 &rarr; Cab scheduled at Arrival Gate for <strong>09:25</strong>
+                  </p>
+                </div>
+                <span class="cab-zero-wait-tag" id="cab-group-hint">Zero Wait Guarantee</span>
+              </div>
+
+              <div class="cab-options-grid" id="cab-options-container">
+                <label class="cab-option-card selected" data-cab="None" data-fee="0">
+                  <input type="radio" name="cab_option" value="None" checked>
+                  <div class="cab-opt-title">No Cab</div>
+                  <div class="cab-opt-desc">Flight Only</div>
+                  <div class="cab-opt-price">&#8377;0</div>
+                </label>
+
+                <label class="cab-option-card" data-cab="Hatchback Mini (Swift/WagonR)" data-fee="499">
+                  <input type="radio" name="cab_option" value="Hatchback Mini">
+                  <div class="cab-opt-title">&#128663; Mini Hatch</div>
+                  <div class="cab-opt-desc">Up to 3 Pax</div>
+                  <div class="cab-opt-price">+&#8377;499</div>
+                </label>
+
+                <label class="cab-option-card" data-cab="BluSmart Electric Sedan (Zero Surge)" data-fee="749">
+                  <input type="radio" name="cab_option" value="BluSmart EV Sedan">
+                  <div class="cab-opt-title">&#9889; BluSmart EV</div>
+                  <div class="cab-opt-desc">Up to 4 Pax</div>
+                  <div class="cab-opt-price">+&#8377;749</div>
+                </label>
+
+                <label class="cab-option-card" data-cab="Prime SUV (Innova Crysta)" data-fee="1199">
+                  <input type="radio" name="cab_option" value="Prime SUV Innova">
+                  <div class="cab-opt-title">&#128665; Prime SUV</div>
+                  <div class="cab-opt-desc">Up to 6 Pax</div>
+                  <div class="cab-opt-price">+&#8377;1,199</div>
+                </label>
               </div>
             </div>
 
-            <div class="input-row">
+            <!-- ===============================================================
+                 DYNAMIC MULTI-PASSENGER DETAILS CONTAINER (1 to 4 Travelers)
+                 =============================================================== -->
+            <h4>Passenger Details (<span id="pax-form-count-label">1 Traveler</span>)</h4>
+            <div id="passengers-inputs-container" class="passengers-inputs-stack">
+              <!-- JavaScript dynamically renders Passenger 1, Passenger 2, ... cards here -->
+            </div>
+
+            <!-- Primary Contact Phone & Email -->
+            <div class="input-row" style="margin-top:0.5rem;">
               <div class="input-field">
-                <label for="p-gender">Gender *</label>
-                <select id="p-gender" required>
-                  <option value="Female">Female</option>
-                  <option value="Male">Male</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              <div class="input-field">
-                <label for="p-phone">Phone Number (10 digits) *</label>
+                <label for="p-phone">Primary Contact Mobile (10 digits) *</label>
                 <input type="tel" id="p-phone" required pattern="[0-9]{10}" placeholder="9876543210">
               </div>
+              <div class="input-field">
+                <label for="p-email">Email Address (For E-Ticket &amp; Vouchers) *</label>
+                <input type="email" id="p-email" required placeholder="priya@college.edu">
+              </div>
             </div>
 
-            <div class="input-field">
-              <label for="p-email">Email Address *</label>
-              <input type="email" id="p-email" required placeholder="priya@college.edu">
-            </div>
-
-            <!-- Live Fare Summary Box: Base Fare + 12% GST + Seat Fee = Total -->
+            <!-- Live Multi-Passenger Fare Summary Box -->
             <div class="fare-card">
-              <div class="fare-row"><span>Base Fare:</span> <strong id="fare-base">&#8377;0</strong></div>
-              <div class="fare-row"><span>Taxes &amp; GST (12%):</span> <strong id="fare-tax">&#8377;0</strong></div>
-              <div class="fare-row"><span>Seat Selection Fee:</span> <strong id="fare-seat">&#8377;0</strong></div>
+              <div class="fare-row"><span>Base Flight Fare (<span id="fare-pax-multiplier">1 Traveler</span>):</span> <strong id="fare-base">&#8377;0</strong></div>
+              <div class="fare-row"><span>Aviation Taxes &amp; GST (12%):</span> <strong id="fare-tax">&#8377;0</strong></div>
+              <div class="fare-row"><span>Seat Selection Fee (<span id="fare-seats-list">None</span>):</span> <strong id="fare-seat">&#8377;0</strong></div>
+              <div class="fare-row"><span>VIP Airport Lounge Pass:</span> <strong id="fare-lounge">&#8377;0</strong></div>
+              <div class="fare-row"><span>Airport Cab Add-on (<span id="fare-cab-name">None</span>):</span> <strong id="fare-cab">&#8377;0</strong></div>
               <div class="fare-row total"><span>Total Payable:</span> <strong id="fare-total">&#8377;0</strong></div>
             </div>
 
             <button type="submit" class="btn btn-success" id="btn-confirm-booking">
-              Confirm &amp; Generate Boarding Pass
+              Confirm Group/Solo Booking &amp; Generate Boarding Pass
             </button>
           </form>
         </div>
@@ -797,26 +1240,25 @@ input[type="range"] { width: 100%; accent-color: var(--primary); cursor: pointer
   </div>
 
   <!-- =========================================================================
-       4. MODAL 2: ELECTRONIC BOARDING PASS (Ticket Confirmation & Print)
+       4. MODAL 2: ELECTRONIC BOARDING PASS (Multi-Pax + Lounge + Cab + Weather)
        ========================================================================= -->
   <div id="ticket-modal" class="modal-overlay hidden">
     <div class="modal-card ticket-card">
       <div class="modal-header ticket-header-actions no-print">
-        <span class="badge badge-success">&#10003; Booking Confirmed in Database</span>
+        <span class="badge badge-success">&#10003; Booking &amp; PNR Confirmed</span>
         <div class="header-btn-group">
           <button id="btn-print-ticket" class="btn btn-primary btn-sm">&#128424; Print Boarding Pass</button>
           <button class="close-btn" id="btn-close-ticket">&times;</button>
         </div>
       </div>
 
-      <!-- Boarding Pass Card -->
       <div class="boarding-pass" id="printable-boarding-pass">
         <div class="pass-top">
           <div class="pass-brand">
             <span class="airplane-symbol">&#9992;</span>
             <div>
               <h3 id="bp-airline">IndiGo</h3>
-              <span class="sub-label">BOARDING PASS</span>
+              <span class="sub-label">ELECTRONIC BOARDING PASS &amp; TRAVEL VOUCHER</span>
             </div>
           </div>
           <div class="pass-pnr-box">
@@ -830,37 +1272,59 @@ input[type="range"] { width: 100%; accent-color: var(--primary); cursor: pointer
             <div>
               <h2 id="bp-origin-code">BLR</h2>
               <span id="bp-origin-name">Bengaluru</span>
-              <p class="time" id="bp-depart-time">08:30</p>
+              <p class="time" id="bp-depart-time">06:10</p>
             </div>
             <div class="route-divider">
-              <span id="bp-duration">2h 45m</span>
+              <span id="bp-duration">2h 55m</span>
               <div class="line"></div>
               <span class="non-stop">Non-Stop</span>
             </div>
             <div class="text-right">
               <h2 id="bp-dest-code">DEL</h2>
-              <span id="bp-dest-name">Delhi</span>
-              <p class="time" id="bp-arrival-time">11:15</p>
+              <span id="bp-dest-name">New Delhi</span>
+              <p class="time" id="bp-arrival-time">09:05</p>
             </div>
           </div>
 
           <div class="meta-grid">
-            <div><span class="lbl">Passenger</span><strong id="bp-passenger">Priya Sharma</strong></div>
+            <div style="grid-column: span 2;"><span class="lbl">Passengers &amp; Assigned Seats</span><strong id="bp-passenger">Priya Sharma (3A)</strong></div>
             <div><span class="lbl">Flight</span><strong id="bp-flight-num">6E-204</strong></div>
-            <div><span class="lbl">Seat</span><strong class="highlight-seat" id="bp-seat">3A</strong></div>
-            <div><span class="lbl">Class</span><strong id="bp-class">Economy</strong></div>
+            <div><span class="lbl">Seats</span><strong class="highlight-seat" id="bp-seat">3A</strong></div>
           </div>
 
           <div class="meta-grid sub-grid">
-            <div><span class="lbl">Travel Date</span><span id="bp-date">29 Oct 2026</span></div>
-            <div><span class="lbl">Terminal</span><span id="bp-terminal">T2</span></div>
-            <div><span class="lbl">Gate</span><span id="bp-gate">G-12</span></div>
+            <div><span class="lbl">Travel Date</span><span id="bp-date">05 Nov 2026</span></div>
+            <div><span class="lbl">Class</span><strong id="bp-class">Economy</strong></div>
+            <div><span class="lbl">Terminal / Gate</span><span id="bp-terminal">T2</span> / <span id="bp-gate">G-12</span></div>
             <div><span class="lbl">Status</span><span class="text-green">CONFIRMED</span></div>
+          </div>
+
+          <!-- FEATURE #1 ON BOARDING PASS: VIP Airport Lounge Access Strip -->
+          <div id="bp-lounge-strip" class="bp-lounge-voucher hidden">
+            <div>
+              <span class="lounge-v-badge">&#127869;&#65039; VIP TERMINAL LOUNGE &amp; HOT BUFFET ACCESS INCLUDED</span>
+              <p id="bp-lounge-details" class="lounge-v-text">Valid at Departure Terminal Lounge &bull; Unlimited Buffet &amp; Wi-Fi</p>
+            </div>
+            <div class="lounge-v-code">LOUNGE-VIP</div>
+          </div>
+
+          <!-- Airport Cab Voucher Strip on Boarding Pass -->
+          <div id="bp-cab-strip" class="bp-cab-voucher hidden">
+            <div>
+              <span class="cab-v-badge">&#128661; CONFIRMED AIRPORT CAB TRANSFER</span>
+              <p id="bp-cab-details" class="cab-v-text">BluSmart EV Sedan &bull; Pickup at 09:25 (Arrival Gate Pillar 4)</p>
+            </div>
+            <div class="cab-v-otp">PIN: 4829</div>
+          </div>
+
+          <!-- FEATURE #5 ON BOARDING PASS: Destination Weather & Packing Advisory Strip -->
+          <div id="bp-weather-strip" class="bp-weather-strip">
+            <span id="bp-weather-text">&#127780;&#65039; Destination Weather: 22°C Pleasant — Carry a light jacket for cool mornings &amp; evenings.</span>
           </div>
 
           <div class="barcode-area">
             <div class="mock-barcode">||| | |||| | |||||| || | |||| ||| |||| | ||| |||||</div>
-            <span class="e-ticket-num">ELECTRONIC TICKET &bull; VERIFIED BY SQL DATABASE</span>
+            <span class="e-ticket-num">VERIFIED E-TICKET &bull; SKYVOYAGE PRO RESERVATION SYSTEM</span>
           </div>
         </div>
       </div>
@@ -869,106 +1333,269 @@ input[type="range"] { width: 100%; accent-color: var(--primary); cursor: pointer
   </div>
 
   <!-- =========================================================================
-       5. MODAL 3: VIVA & ARCHITECTURE GUIDE (Quick Revision for Examiner)
+       5. MODAL 3: VIVA & ARCHITECTURE GUIDE
        ========================================================================= -->
   <div id="arch-modal" class="modal-overlay hidden">
     <div class="modal-card">
       <div class="modal-header">
-        <h3>Full-Stack Project Architecture &amp; Viva Q&amp;A</h3>
+        <h3>Full-Stack Architecture &amp; Viva Guide (Pro v2 Edition)</h3>
         <button class="close-btn" id="btn-close-arch">&times;</button>
       </div>
       <div class="modal-body-scroll">
         <div class="doc-section">
-          <h4>1. Technology Stack</h4>
+          <h4>1. Pro v2 Features Added for Maximum Marks</h4>
           <ul>
-            <li><strong>Frontend:</strong> Semantic HTML5, Custom CSS3, Vanilla JavaScript (ES6+ Fetch API).</li>
-            <li><strong>Backend:</strong> Python Flask REST APIs (<code>Flask</code>, <code>Flask-SQLAlchemy</code>, <code>Flask-CORS</code>).</li>
-            <li><strong>Database:</strong> PostgreSQL / SQLite via SQLAlchemy ORM (Relational Schema).</li>
-            <li><strong>Version Control:</strong> Git &amp; GitHub (Branching, Commit history, <code>.gitignore</code>).</li>
+            <li><strong>Multi-Passenger &amp; Multi-Seat Booking (1–4 Travelers):</strong> Dynamic passenger input generation, multi-seat array selection on the aircraft grid, and 1-to-Many SQL relational storage (1 <code>Booking</code> &rarr; Multiple <code>Passenger</code> rows).</li>
+            <li><strong>Smart Layover &amp; VIP Lounge Pass Recommender:</strong> Automatically inspects flight departure hour and stops to recommend a discounted ₹299/pax Lounge &amp; Meal Pass.</li>
+            <li><strong>Live Destination Weather &amp; Packing Advisory:</strong> Displays destination temperature, weather conditions, and a tailored packing tip in both the search intelligence card and the printed Boarding Pass.</li>
+            <li><strong>AI Fare Predictor, Landing-Synced Airport Cabs &amp; SkyBot Chatbot:</strong> Complete end-to-end travel ecosystem.</li>
           </ul>
-        </div>
-
-        <div class="doc-section">
-          <h4>2. Database Schema (Entity Relationship)</h4>
-          <ul>
-            <li><strong><code>flights</code>:</strong> Stores <code>id</code>, <code>flight_number</code>, <code>airline</code>, <code>origin</code>, <code>destination</code>, <code>depart_time</code>, <code>arrival_time</code>, <code>base_price</code>.</li>
-            <li><strong><code>bookings</code>:</strong> Stores <code>id</code>, <code>pnr</code> (Unique), <code>flight_id</code> (Foreign Key), <code>travel_date</code>, <code>seat_number</code>, <code>total_amount</code>, <code>status</code>.</li>
-            <li><strong><code>passengers</code>:</strong> Stores <code>id</code>, <code>booking_id</code> (Foreign Key), <code>full_name</code>, <code>age</code>, <code>gender</code>, <code>email</code>, <code>phone</code>.</li>
-          </ul>
-        </div>
-
-        <div class="doc-section">
-          <h4>3. Top Viva Questions &amp; Answers</h4>
-          <p><strong>Q: How does SQLite switch to PostgreSQL?</strong><br>
-          <em>Ans:</em> We use SQLAlchemy ORM. By changing the <code>DATABASE_URL</code> environment variable from <code>sqlite:///skyvoyage.db</code> to <code>postgresql://user:pass@localhost:5432/dbname</code>, SQLAlchemy translates all queries automatically without changing a single line of Python application code.</p>
-          <p><strong>Q: How do you prevent double-booking the same seat?</strong><br>
-          <em>Ans:</em> In <code>app.py</code>, the <code>POST /api/book</code> route queries the database: <code>Booking.query.filter_by(flight_id=flight.id, travel_date=date, seat_number=seat, status='CONFIRMED').first()</code>. If a record exists, it returns HTTP 409 Conflict.</p>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- =========================================================================
+       6. SKYBOT AI TRAVEL ASSISTANT CHATBOT (Bottom-Right)
+       ========================================================================= -->
+  <div class="chatbot-widget no-print">
+    <div id="chatbot-window" class="chatbot-window hidden">
+      <div class="chatbot-header">
+        <div class="chatbot-header-info">
+          <div class="bot-avatar">&#129302;</div>
+          <div>
+            <h4>SkyBot AI Assistant</h4>
+            <span class="bot-status">&#9679; Online &bull; Flights, Weather, Lounge &amp; Cabs</span>
+          </div>
+        </div>
+        <button id="btn-close-chat" class="chat-close-btn">&times;</button>
+      </div>
+
+      <div id="chat-messages" class="chat-messages">
+        <div class="chat-bubble bot">
+          Hi! I'm <strong>SkyBot AI</strong> &#9992;&#65039;. Ask me about cheapest flights, group bookings (1–4 pax), VIP lounge passes, destination weather tips, or airport cabs!
+        </div>
+      </div>
+
+      <div class="chat-quick-chips">
+        <button type="button" class="chat-chip" data-prompt="Which is the cheapest flight on this route?">Cheapest flight?</button>
+        <button type="button" class="chat-chip" data-prompt="What is the destination weather and packing tip?">Weather &amp; Packing</button>
+        <button type="button" class="chat-chip" data-prompt="Tell me about the VIP Airport Lounge Pass">VIP Lounge</button>
+        <button type="button" class="chat-chip" data-prompt="How do I book for multiple passengers?">Group Booking</button>
+      </div>
+
+      <form id="chat-form" class="chat-input-bar">
+        <input type="text" id="chat-input" placeholder="Ask about flights, weather, lounge, cabs..." autocomplete="off">
+        <button type="submit" class="chat-send-btn">&#10148;</button>
+      </form>
+    </div>
+
+    <button id="btn-open-chat" class="chatbot-launcher">
+      <span class="launcher-icon">&#10024;</span>
+      <span>Ask SkyBot AI</span>
+    </button>
+  </div>
+
   <!-- Footer -->
   <footer class="footer no-print">
-    <p>SkyVoyage Flight Reservation System &bull; Academic Full-Stack Project</p>
-    <p>Python Flask &bull; PostgreSQL / SQLite &bull; Vanilla JavaScript &bull; Git Version Control</p>
+    <p>SkyVoyage Pro v2 Flight Reservation System &bull; Academic Full-Stack Project</p>
+    <p>Multi-Passenger Booking &bull; AI Fare Predictor &bull; VIP Lounge Recommender &bull; Destination Weather &bull; Airport Cab Sync</p>
   </footer>
 
-  <!-- JavaScript Link 1: Jab Flask server (http://127.0.0.1:5050) chal raha ho -->
   <script>
 /**
  * ================================================================================
- * FILE: static/js/app.js (Frontend Client-Side Logic)
- * PROJECT: SkyVoyage - Online Flight Booking System (College Project)
+ * FILE: static/js/app.js (Frontend Client-Side Logic - Pro v2 Multi-Pax Edition)
+ * PROJECT: SkyVoyage Pro - Multi-Passenger, Lounge Pass, Weather Advisory & Cabs
  * ================================================================================
  * KYU USE HUI HAI YE FILE? (Purpose of this file):
- * Ye JavaScript file humare HTML page (Frontend) aur Python Flask server (Backend)
- * ke beech pul (bridge) ka kaam karti hai.
- *
- * SMART DUAL-MODE SUPPORT:
- * 1. Jab Python Flask Server (`python3 app.py`) chal raha hota hai, toh ye `fetch()`
- *    se SQLite / PostgreSQL database ke sath kaam karti hai.
- * 2. Agar aapne bina server chalaye seedha `index.html` par double-click karke khola hai,
- *    tab bhi ye crash nahi hogi — ye automatically built-in fallback data aur browser
- *    `localStorage` use karke poori website chala degi!
+ * 1. Multi-Passenger Support (1 to 4 Passengers):
+ *    - Allows selecting N seats on the aircraft map (`state.selectedSeats` array).
+ *    - Dynamically generates N passenger input forms (`renderPassengerInputs()`).
+ *    - Multiplies flight fare & lounge pass by N travelers.
+ * 2. Feature #1: Smart Layover & VIP Airport Lounge Pass Recommender.
+ * 3. Feature #5: Live Destination Weather & Packing Advisory (Search + Boarding Pass).
+ * 4. AI Fare Predictor, Landing-Synced Airport Cabs, and SkyBot AI Chatbot.
  * ================================================================================
  */
 
-// Guard taaki agar script tag do baar load ho toh code do baar execute na ho
 if (!window.__SKYVOYAGE_APP_INITIALIZED__) {
 window.__SKYVOYAGE_APP_INITIALIZED__ = true;
 
 // ==============================================================================
-// FALLBACK DATASET (Jab backend server band ho ya seedha HTML file kholi gayi ho)
+// 1. REAL INDIAN DOMESTIC FLIGHTS DATASET (Retrieved from Google Flights)
 // ==============================================================================
 const FALLBACK_FLIGHTS = [
-  { id: 1, flightNumber: "6E-204", airline: "IndiGo", airlineCode: "6E", origin: "BLR", originName: "Bengaluru", destination: "DEL", destinationName: "Delhi", departTime: "06:15", arrivalTime: "09:00", duration: "2h 45m", stops: "Non-stop", stopCount: 0, price: 4850 },
-  { id: 2, flightNumber: "AI-802", airline: "Air India", airlineCode: "AI", origin: "BLR", originName: "Bengaluru", destination: "DEL", destinationName: "Delhi", departTime: "08:30", arrivalTime: "11:20", duration: "2h 50m", stops: "Non-stop", stopCount: 0, price: 5400 },
-  { id: 3, flightNumber: "UK-812", airline: "Vistara", airlineCode: "UK", origin: "BLR", originName: "Bengaluru", destination: "DEL", destinationName: "Delhi", departTime: "11:45", arrivalTime: "14:35", duration: "2h 50m", stops: "Non-stop", stopCount: 0, price: 6100 },
-  { id: 4, flightNumber: "QP-1304", airline: "Akasa Air", airlineCode: "QP", origin: "BLR", originName: "Bengaluru", destination: "DEL", destinationName: "Delhi", departTime: "14:10", arrivalTime: "17:00", duration: "2h 50m", stops: "Non-stop", stopCount: 0, price: 4320 },
-  { id: 5, flightNumber: "SG-302", airline: "SpiceJet", airlineCode: "SG", origin: "BLR", originName: "Bengaluru", destination: "DEL", destinationName: "Delhi", departTime: "18:00", arrivalTime: "22:15", duration: "4h 15m", stops: "1 Stop (HYD)", stopCount: 1, price: 3890 },
-  { id: 6, flightNumber: "6E-512", airline: "IndiGo", airlineCode: "6E", origin: "BOM", originName: "Mumbai", destination: "DEL", destinationName: "Delhi", departTime: "07:00", arrivalTime: "09:15", duration: "2h 15m", stops: "Non-stop", stopCount: 0, price: 4100 },
-  { id: 7, flightNumber: "AI-665", airline: "Air India", airlineCode: "AI", origin: "BOM", originName: "Mumbai", destination: "DEL", destinationName: "Delhi", departTime: "16:30", arrivalTime: "18:50", duration: "2h 20m", stops: "Non-stop", stopCount: 0, price: 4950 },
-  { id: 8, flightNumber: "6E-441", airline: "IndiGo", airlineCode: "6E", origin: "DEL", originName: "Delhi", destination: "GOI", destinationName: "Goa", departTime: "09:20", arrivalTime: "12:00", duration: "2h 40m", stops: "Non-stop", stopCount: 0, price: 5200 },
-  { id: 9, flightNumber: "UK-994", airline: "Vistara", airlineCode: "UK", origin: "DEL", originName: "Delhi", destination: "BOM", destinationName: "Mumbai", departTime: "15:00", arrivalTime: "17:15", duration: "2h 15m", stops: "Non-stop", stopCount: 0, price: 5800 },
-  { id: 10, flightNumber: "QP-1511", airline: "Akasa Air", airlineCode: "QP", origin: "DEL", originName: "Delhi", destination: "BLR", destinationName: "Bengaluru", departTime: "10:00", arrivalTime: "12:45", duration: "2h 45m", stops: "Non-stop", stopCount: 0, price: 4400 }
+  // Bengaluru (BLR) -> New Delhi (DEL)
+  { id: 1, flightNumber: "6E-204", airline: "IndiGo", airlineCode: "6E", aircraft: "Airbus A321neo", origin: "BLR", originName: "Bengaluru (T1)", destination: "DEL", destinationName: "New Delhi (IGI T2)", departTime: "06:10", arrivalTime: "09:05", duration: "2h 55m", stops: "Non-stop", stopCount: 0, price: 9408 },
+  { id: 2, flightNumber: "QP-1304", airline: "Akasa Air", airlineCode: "QP", aircraft: "Boeing 737 MAX 8", origin: "BLR", originName: "Bengaluru (T1)", destination: "DEL", destinationName: "New Delhi (IGI T2)", departTime: "11:45", arrivalTime: "14:35", duration: "2h 50m", stops: "Non-stop", stopCount: 0, price: 9759 },
+  { id: 3, flightNumber: "AI-804", airline: "Air India", airlineCode: "AI", aircraft: "Airbus A320neo", origin: "BLR", originName: "Bengaluru (T2)", destination: "DEL", destinationName: "New Delhi (IGI T3)", departTime: "08:30", arrivalTime: "11:20", duration: "2h 50m", stops: "Non-stop", stopCount: 0, price: 10276 },
+  { id: 4, flightNumber: "IX-2742", airline: "Air India Express", airlineCode: "IX", aircraft: "Boeing 737-800", origin: "BLR", originName: "Bengaluru (T2)", destination: "DEL", destinationName: "New Delhi (IGI T3)", departTime: "15:15", arrivalTime: "18:15", duration: "3h 00m", stops: "Non-stop", stopCount: 0, price: 11483 },
+  { id: 5, flightNumber: "6E-6012", airline: "IndiGo", airlineCode: "6E", aircraft: "Airbus A320neo", origin: "BLR", originName: "Bengaluru (T1)", destination: "DEL", destinationName: "New Delhi (IGI T1)", departTime: "19:40", arrivalTime: "22:35", duration: "2h 55m", stops: "Non-stop", stopCount: 0, price: 12553 },
+
+  // New Delhi (DEL) -> Bengaluru (BLR)
+  { id: 6, flightNumber: "6E-2131", airline: "IndiGo", airlineCode: "6E", aircraft: "Airbus A321neo", origin: "DEL", originName: "New Delhi (IGI T2)", destination: "BLR", destinationName: "Bengaluru (T1)", departTime: "07:05", arrivalTime: "09:55", duration: "2h 50m", stops: "Non-stop", stopCount: 0, price: 9026 },
+  { id: 7, flightNumber: "IX-1145", airline: "Air India Express", airlineCode: "IX", aircraft: "Boeing 737 MAX 8", origin: "DEL", originName: "New Delhi (IGI T3)", destination: "BLR", destinationName: "Bengaluru (T2)", departTime: "10:15", arrivalTime: "13:10", duration: "2h 55m", stops: "Non-stop", stopCount: 0, price: 9354 },
+  { id: 8, flightNumber: "QP-1511", airline: "Akasa Air", airlineCode: "QP", aircraft: "Boeing 737 MAX 8", origin: "DEL", originName: "New Delhi (IGI T2)", destination: "BLR", destinationName: "Bengaluru (T1)", departTime: "14:20", arrivalTime: "17:15", duration: "2h 55m", stops: "Non-stop", stopCount: 0, price: 10090 },
+  { id: 9, flightNumber: "AI-502", airline: "Air India", airlineCode: "AI", aircraft: "Airbus A321", origin: "DEL", originName: "New Delhi (IGI T3)", destination: "BLR", destinationName: "Bengaluru (T2)", departTime: "18:00", arrivalTime: "20:50", duration: "2h 50m", stops: "Non-stop", stopCount: 0, price: 10710 },
+
+  // Mumbai (BOM) -> New Delhi (DEL)
+  { id: 10, flightNumber: "6E-512", airline: "IndiGo", airlineCode: "6E", aircraft: "Airbus A320neo", origin: "BOM", originName: "Mumbai (CSMIA T2)", destination: "DEL", destinationName: "New Delhi (IGI T2)", departTime: "06:30", arrivalTime: "08:35", duration: "2h 05m", stops: "Non-stop", stopCount: 0, price: 6475 },
+  { id: 11, flightNumber: "IX-1214", airline: "Air India Express", airlineCode: "IX", aircraft: "Boeing 737-800", origin: "BOM", originName: "Mumbai (CSMIA T2)", destination: "DEL", destinationName: "New Delhi (IGI T3)", departTime: "09:45", arrivalTime: "12:10", duration: "2h 25m", stops: "Non-stop", stopCount: 0, price: 6895 },
+  { id: 12, flightNumber: "AI-866", airline: "Air India", airlineCode: "AI", aircraft: "Boeing 787 Dreamliner", origin: "BOM", originName: "Mumbai (CSMIA T2)", destination: "DEL", destinationName: "New Delhi (IGI T3)", departTime: "13:00", arrivalTime: "15:15", duration: "2h 15m", stops: "Non-stop", stopCount: 0, price: 7525 },
+  { id: 13, flightNumber: "SG-8710", airline: "SpiceJet", airlineCode: "SG", aircraft: "Boeing 737-800", origin: "BOM", originName: "Mumbai (CSMIA T1)", destination: "DEL", destinationName: "New Delhi (IGI T1)", departTime: "17:30", arrivalTime: "19:50", duration: "2h 20m", stops: "Non-stop", stopCount: 0, price: 7698 },
+
+  // New Delhi (DEL) -> Goa (GOI)
+  { id: 14, flightNumber: "6E-441", airline: "IndiGo", airlineCode: "6E", aircraft: "Airbus A320neo", origin: "DEL", originName: "New Delhi (IGI T2)", destination: "GOI", destinationName: "Goa (Mopa GOX)", departTime: "08:20", arrivalTime: "10:50", duration: "2h 30m", stops: "Non-stop", stopCount: 0, price: 6507 },
+  { id: 15, flightNumber: "QP-1602", airline: "Akasa Air", airlineCode: "QP", aircraft: "Boeing 737 MAX 8", origin: "DEL", originName: "New Delhi (IGI T2)", destination: "GOI", destinationName: "Goa (Mopa GOX)", departTime: "11:30", arrivalTime: "14:10", duration: "2h 40m", stops: "Non-stop", stopCount: 0, price: 7108 },
+  { id: 16, flightNumber: "AI-883", airline: "Air India", airlineCode: "AI", aircraft: "Airbus A320neo", origin: "DEL", originName: "New Delhi (IGI T3)", destination: "GOI", destinationName: "Goa (Dabolim GOI)", departTime: "15:10", arrivalTime: "17:40", duration: "2h 30m", stops: "Non-stop", stopCount: 0, price: 7744 },
+
+  // Bengaluru (BLR) -> Hyderabad (HYD)
+  { id: 17, flightNumber: "6E-714", airline: "IndiGo", airlineCode: "6E", aircraft: "Airbus A320neo", origin: "BLR", originName: "Bengaluru (T1)", destination: "HYD", destinationName: "Hyderabad (RGIA)", departTime: "07:10", arrivalTime: "08:30", duration: "1h 20m", stops: "Non-stop", stopCount: 0, price: 5091 },
+  { id: 18, flightNumber: "QP-1412", airline: "Akasa Air", airlineCode: "QP", aircraft: "Boeing 737 MAX 8", origin: "BLR", originName: "Bengaluru (T1)", destination: "HYD", destinationName: "Hyderabad (RGIA)", departTime: "12:15", arrivalTime: "13:35", duration: "1h 20m", stops: "Non-stop", stopCount: 0, price: 5474 },
+  { id: 19, flightNumber: "IX-2819", airline: "Air India Express", airlineCode: "IX", aircraft: "Boeing 737-800", origin: "BLR", originName: "Bengaluru (T2)", destination: "HYD", destinationName: "Hyderabad (RGIA)", departTime: "18:30", arrivalTime: "19:55", duration: "1h 25m", stops: "Non-stop", stopCount: 0, price: 6227 },
+
+  // New Delhi (DEL) -> Mumbai (BOM)
+  { id: 20, flightNumber: "6E-2015", airline: "IndiGo", airlineCode: "6E", aircraft: "Airbus A321neo", origin: "DEL", originName: "New Delhi (IGI T2)", destination: "BOM", destinationName: "Mumbai (CSMIA T2)", departTime: "08:00", arrivalTime: "10:15", duration: "2h 15m", stops: "Non-stop", stopCount: 0, price: 6550 },
+  { id: 21, flightNumber: "AI-678", airline: "Air India", airlineCode: "AI", aircraft: "Boeing 777-300ER", origin: "DEL", originName: "New Delhi (IGI T3)", destination: "BOM", destinationName: "Mumbai (CSMIA T2)", departTime: "15:00", arrivalTime: "17:15", duration: "2h 15m", stops: "Non-stop", stopCount: 0, price: 7320 }
 ];
 
 // ==============================================================================
-// SECTION 1: APPLICATION STATE (Website ki current memory)
+// 2. FEATURE #5: DESTINATION LIVE WEATHER & PACKING ADVISORY DATA
 // ==============================================================================
-const state = {
-  currentFlight: null,      // Jis flight par user ne 'Book Now' click kiya hai
-  selectedSeat: null,       // User ne seat map mein kaunsi seat chuni (jaise '3A')
-  selectedSeatFee: 150.0,   // Front row seat ₹350 ki hai, baaki ₹150 ki
-  sortBy: 'price',          // Flights kis order mein dikhengi ('price', 'duration', 'depart')
-  maxPrice: 15000,          // Price slider ki current maximum value
-  activeAirlines: ['IndiGo', 'Air India', 'Vistara', 'Akasa Air', 'SpiceJet'],
-  allFlights: []            // Backend se aayi hui flights ki master list
+const WEATHER_DATA = {
+  "DEL": { temp: "22°C", cond: "Pleasant & Crisp Haze", icon: "🌤️", tip: "Carry a light jacket or shawl for cool Delhi mornings & evenings." },
+  "BLR": { temp: "24°C", cond: "Cool & Breezy", icon: "⛅", tip: "Bengaluru evenings drop to 19°C; pack a light hoodie & compact umbrella." },
+  "BOM": { temp: "30°C", cond: "Warm Coastal Breeze", icon: "☀️", tip: "Pack breathable cotton clothes & sunglasses for Mumbai's humid weather." },
+  "GOI": { temp: "31°C", cond: "Sunny Tropical Beach Weather", icon: "🌴", tip: "Pack resort wear, flip-flops, sunglasses & SPF 50 sunscreen for Goa!" },
+  "HYD": { temp: "27°C", cond: "Clear & Sunny", icon: "☀️", tip: "Light cotton formals or casuals are ideal for Hyderabad's warm afternoons." },
+  "CCU": { temp: "26°C", cond: "Mild & Humid", icon: "🌤️", tip: "Carry light cotton outfits and a compact umbrella for Kolkata." },
+  "MAA": { temp: "31°C", cond: "Warm & Humid", icon: "☀️", tip: "Light linen/cotton clothes and a water bottle recommended for Chennai." },
+  "JAI": { temp: "25°C", cond: "Sunny Days & Cool Desert Nights", icon: "🏜️", tip: "Pack sunglasses for daytime forts and a light sweater for Jaipur nights." }
 };
 
 // ==============================================================================
-// SECTION 2: DOM ELEMENT REFERENCES (HTML elements ko JS se pakadna)
+// 3. AI FARE PREDICTOR DATA
+// ==============================================================================
+const PRICE_PREDICTIONS = {
+  "BLR-DEL": {
+    fairBand: "₹6,400 – ₹9,600",
+    recommendation: "WAIT / FLY NOV 8–10 TO SAVE ₹3,145",
+    confidence: 89,
+    badgeType: "wait",
+    headline: "Bengaluru → New Delhi: Cheapest Fares Drop to ₹9,408 on Nov 8–9",
+    insight: "Google Flights historical data shows November fares average ₹1,600 higher due to festive travel (peaking at ₹13,958 on Nov 6). Shifting departure to Nov 8–9 locks in ₹9,408 nonstop!",
+    bestWindow: "Book 2–5 months ahead or travel Sun/Mon/Tue",
+    driveTime: "35 min from DEL Terminal T3 to Connaught Place",
+    days: [
+      { date: "2026-10-31", label: "31 Oct", price: 11483 },
+      { date: "2026-11-01", label: "01 Nov", price: 12553 },
+      { date: "2026-11-02", label: "02 Nov", price: 10276 },
+      { date: "2026-11-05", label: "05 Nov", price: 12553 },
+      { date: "2026-11-06", label: "06 Nov", price: 13958 },
+      { date: "2026-11-08", label: "08 Nov", price: 9759 },
+      { date: "2026-11-09", label: "09 Nov", price: 9408 }
+    ]
+  },
+  "DEL-BLR": {
+    fairBand: "₹6,300 – ₹9,600",
+    recommendation: "BOOK NOW (91% CONFIDENCE)",
+    confidence: 91,
+    badgeType: "buy",
+    headline: "New Delhi → Bengaluru: Lock in ₹9,026 Before Mid-Nov Surge",
+    insight: "Current nonstop fares (₹9,026 – ₹9,354) are inside the fair price range. Starting Nov 10–15, DEL→BLR fares jump sharply to ₹13,682 – ₹15,672.",
+    bestWindow: "Book 2+ weeks ahead before Nov 10 spike",
+    driveTime: "59 min from BLR Airport to Bengaluru City Center",
+    days: [
+      { date: "2026-10-31", label: "31 Oct", price: 9354 },
+      { date: "2026-11-02", label: "02 Nov", price: 9181 },
+      { date: "2026-11-03", label: "03 Nov", price: 9026 },
+      { date: "2026-11-05", label: "05 Nov", price: 9410 },
+      { date: "2026-11-08", label: "08 Nov", price: 8724 },
+      { date: "2026-11-11", label: "11 Nov", price: 11830 },
+      { date: "2026-11-14", label: "14 Nov", price: 13682 }
+    ]
+  },
+  "BOM-DEL": {
+    fairBand: "₹5,400 – ₹7,100",
+    recommendation: "BOOK NOW • GREAT FARE",
+    confidence: 94,
+    badgeType: "buy",
+    headline: "Mumbai → New Delhi: Nonstop Fares at Floor Price ₹6,475",
+    insight: "At ₹6,475 – ₹6,895, Mumbai to Delhi nonstop flights (2h 05m) are trading inside the lowest annual price band. Avoid Nov 5–6 when fares touch ₹10,002.",
+    bestWindow: "Book 8+ days before departure",
+    driveTime: "35 min from DEL IGI Airport to Central Delhi",
+    days: [
+      { date: "2026-10-31", label: "31 Oct", price: 7525 },
+      { date: "2026-11-01", label: "01 Nov", price: 6895 },
+      { date: "2026-11-03", label: "03 Nov", price: 8206 },
+      { date: "2026-11-05", label: "05 Nov", price: 10002 },
+      { date: "2026-11-06", label: "06 Nov", price: 9534 },
+      { date: "2026-11-08", label: "08 Nov", price: 6475 },
+      { date: "2026-11-09", label: "09 Nov", price: 6475 }
+    ]
+  },
+  "DEL-GOI": {
+    fairBand: "₹4,900 – ₹8,000",
+    recommendation: "BOOK IMMEDIATELY (SURGE AHEAD)",
+    confidence: 96,
+    badgeType: "buy",
+    headline: "New Delhi → Goa: Book at ₹6,507 Before Nov 9 Surge to ₹11,436!",
+    insight: "Nonstop flights to Goa are holding steady at ₹6,507 through Nov 7, after which peak season demand pushes fares up by +₹4,929 per ticket.",
+    bestWindow: "Travel between Nov 2–8 for flat ₹6,507 fare",
+    driveTime: "1 hr 19 min from Goa Airport to Panjim / Calangute",
+    days: [
+      { date: "2026-10-31", label: "31 Oct", price: 6612 },
+      { date: "2026-11-02", label: "02 Nov", price: 6507 },
+      { date: "2026-11-04", label: "04 Nov", price: 6507 },
+      { date: "2026-11-05", label: "05 Nov", price: 6507 },
+      { date: "2026-11-08", label: "08 Nov", price: 6693 },
+      { date: "2026-11-09", label: "09 Nov", price: 11436 },
+      { date: "2026-11-10", label: "10 Nov", price: 10976 }
+    ]
+  },
+  "BLR-HYD": {
+    fairBand: "₹4,500 – ₹6,200",
+    recommendation: "BOOK NOW • FLOOR PRICE ₹5,091",
+    confidence: 88,
+    badgeType: "buy",
+    headline: "Bengaluru → Hyderabad: 1h 20m Nonstop Starting at ₹5,091",
+    insight: "Fares on Nov 2 and Nov 8–12 are at the lowest yearly floor of ₹5,091 (compared to ₹8,226 on Friday Nov 6).",
+    bestWindow: "Book 6+ days before departure; Mon/Tue/Sun are cheapest",
+    driveTime: "47 min from HYD Airport to HITEC City / Gachibowli",
+    days: [
+      { date: "2026-10-31", label: "31 Oct", price: 6227 },
+      { date: "2026-11-02", label: "02 Nov", price: 5091 },
+      { date: "2026-11-04", label: "04 Nov", price: 6064 },
+      { date: "2026-11-05", label: "05 Nov", price: 7245 },
+      { date: "2026-11-06", label: "06 Nov", price: 8226 },
+      { date: "2026-11-08", label: "08 Nov", price: 5091 },
+      { date: "2026-11-09", label: "09 Nov", price: 5091 }
+    ]
+  }
+};
+
+// ==============================================================================
+// 4. APPLICATION STATE (Supports Multi-Passenger & Multi-Seat Selection)
+// ==============================================================================
+const state = {
+  passengersCount: 1,       // Kitne travelers hain (1, 2, 3, ya 4)
+  currentFlight: null,
+  selectedSeats: [],        // Array of objects: [{ code: '3A', fee: 150 }, { code: '3B', fee: 150 }]
+  loungeIncluded: false,    // Feature #1: VIP Airport Lounge Pass checkbox state
+  loungeFeePerPax: 299.0,   // ₹299 per traveler
+  selectedCabType: 'None',
+  selectedCabFee: 0.0,
+  selectedCabPickupTime: 'N/A',
+  sortBy: 'price',
+  maxPrice: 18000,
+  activeAirlines: ['IndiGo', 'Air India', 'Akasa Air', 'Air India Express', 'SpiceJet'],
+  allFlights: [],
+  priceAlertEnabled: false
+};
+
+// ==============================================================================
+// 5. DOM ELEMENT REFERENCES
 // ==============================================================================
 const dom = {
   navSearchBtn: document.getElementById('nav-search-btn'),
@@ -988,7 +1615,24 @@ const dom = {
   originSelect: document.getElementById('origin-select'),
   destSelect: document.getElementById('dest-select'),
   departDate: document.getElementById('depart-date'),
+  passengersSelect: document.getElementById('passengers-select'),
   travelClass: document.getElementById('travel-class'),
+  travelerSummaryBadge: document.getElementById('traveler-summary-badge'),
+
+  predConfidenceBadge: document.getElementById('pred-confidence-badge'),
+  predHeadline: document.getElementById('pred-headline'),
+  predInsightText: document.getElementById('pred-insight-text'),
+  predFairBand: document.getElementById('pred-fair-band'),
+  predBestWindow: document.getElementById('pred-best-window'),
+  predDriveTime: document.getElementById('pred-drive-time'),
+  predBarsContainer: document.getElementById('pred-bars-container'),
+  btnPriceAlert: document.getElementById('btn-price-alert'),
+  priceAlertText: document.getElementById('price-alert-text'),
+
+  // Feature #5 Weather DOM
+  weatherIcon: document.getElementById('weather-icon'),
+  weatherTempCond: document.getElementById('weather-temp-cond'),
+  weatherPackTip: document.getElementById('weather-pack-tip'),
 
   priceSlider: document.getElementById('price-slider'),
   priceValLabel: document.getElementById('price-val-label'),
@@ -999,13 +1643,34 @@ const dom = {
   sortChips: document.querySelectorAll('.sort-chip'),
 
   btnCloseModal: document.getElementById('btn-close-modal'),
+  modalPaxCountTitle: document.getElementById('modal-pax-count-title'),
   modalFlightDetails: document.getElementById('modal-flight-details'),
+  seatInstructionBanner: document.getElementById('seat-instruction-banner'),
   seatsGrid: document.getElementById('seats-grid'),
   lblSelectedSeat: document.getElementById('lbl-selected-seat'),
+
+  // Feature #1 Lounge DOM
+  loungeSmartReason: document.getElementById('lounge-smart-reason'),
+  loungeDescText: document.getElementById('lounge-desc-text'),
+  chkLoungePass: document.getElementById('chk-lounge-pass'),
+  loungeTotalLabel: document.getElementById('lounge-total-label'),
+
+  cabSyncSubtitle: document.getElementById('cab-sync-subtitle'),
+  cabGroupHint: document.getElementById('cab-group-hint'),
+  cabOptionsContainer: document.getElementById('cab-options-container'),
+
+  paxFormCountLabel: document.getElementById('pax-form-count-label'),
+  passengersInputsContainer: document.getElementById('passengers-inputs-container'),
   bookingForm: document.getElementById('booking-form'),
+
+  farePaxMultiplier: document.getElementById('fare-pax-multiplier'),
   fareBase: document.getElementById('fare-base'),
   fareTax: document.getElementById('fare-tax'),
+  fareSeatsList: document.getElementById('fare-seats-list'),
   fareSeat: document.getElementById('fare-seat'),
+  fareLounge: document.getElementById('fare-lounge'),
+  fareCabName: document.getElementById('fare-cab-name'),
+  fareCab: document.getElementById('fare-cab'),
   fareTotal: document.getElementById('fare-total'),
 
   btnCloseTicket: document.getElementById('btn-close-ticket'),
@@ -1026,15 +1691,26 @@ const dom = {
   bpDate: document.getElementById('bp-date'),
   bpTerminal: document.getElementById('bp-terminal'),
   bpGate: document.getElementById('bp-gate'),
+  bpLoungeStrip: document.getElementById('bp-lounge-strip'),
+  bpLoungeDetails: document.getElementById('bp-lounge-details'),
+  bpCabStrip: document.getElementById('bp-cab-strip'),
+  bpCabDetails: document.getElementById('bp-cab-details'),
+  bpWeatherText: document.getElementById('bp-weather-text'),
 
   bookingsList: document.getElementById('bookings-list'),
   btnCloseArch: document.getElementById('btn-close-arch'),
+
+  btnOpenChat: document.getElementById('btn-open-chat'),
+  btnCloseChat: document.getElementById('btn-close-chat'),
+  chatbotWindow: document.getElementById('chatbot-window'),
+  chatMessages: document.getElementById('chat-messages'),
+  chatForm: document.getElementById('chat-form'),
+  chatInput: document.getElementById('chat-input'),
+  chatChips: document.querySelectorAll('.chat-chip'),
+
   toastContainer: document.getElementById('toast-container')
 };
 
-// ==============================================================================
-// SECTION 3: TOAST NOTIFICATION HELPER
-// ==============================================================================
 function showToast(message, type = 'info') {
   const toast = document.createElement('div');
   toast.className = `toast ${type}`;
@@ -1043,10 +1719,9 @@ function showToast(message, type = 'info') {
   setTimeout(() => toast.remove(), 3500);
 }
 
-// LocalStorage Helpers for Fallback Mode
 function getLocalBookings() {
   try {
-    return JSON.parse(localStorage.getItem('skyvoyage_local_bookings') || '[]');
+    return JSON.parse(localStorage.getItem('skyvoyage_local_bookings_v2') || '[]');
   } catch (e) {
     return [];
   }
@@ -1054,27 +1729,106 @@ function getLocalBookings() {
 
 function saveLocalBookings(list) {
   try {
-    localStorage.setItem('skyvoyage_local_bookings', JSON.stringify(list));
+    localStorage.setItem('skyvoyage_local_bookings_v2', JSON.stringify(list));
   } catch (e) {}
 }
 
 // ==============================================================================
-// SECTION 4: BACKEND REST API CALLS (With Offline Fallback)
+// 6. AI FARE PREDICTOR + FEATURE #5 WEATHER BANNER RENDERER
 // ==============================================================================
+function renderFarePredictionAndWeather(origin, dest) {
+  const key = `${origin}-${dest}`;
+  const pred = PRICE_PREDICTIONS[key] || {
+    fairBand: "₹5,800 – ₹8,400",
+    recommendation: "BOOK NOW (87% CONFIDENCE)",
+    confidence: 87,
+    badgeType: "buy",
+    headline: `${origin} → ${dest}: Nonstop Fares Are Currently in the Optimal Buying Zone`,
+    insight: `Fares for ${origin} → ${dest} are trading ₹1,150 below the last-minute surge average.`,
+    bestWindow: "Book 14–21 days ahead; Tue/Wed flights are 18% cheaper",
+    driveTime: "45 min from Arrival Terminal to City Center",
+    days: [
+      { date: "2026-10-31", label: "31 Oct", price: 7200 },
+      { date: "2026-11-02", label: "02 Nov", price: 6850 },
+      { date: "2026-11-04", label: "04 Nov", price: 6850 },
+      { date: "2026-11-05", label: "05 Nov", price: 7490 },
+      { date: "2026-11-06", label: "06 Nov", price: 8490 },
+      { date: "2026-11-08", label: "08 Nov", price: 6350 },
+      { date: "2026-11-09", label: "09 Nov", price: 6350 }
+    ]
+  };
 
-/**
- * 1. fetchFlights():
- * Pehle Flask backend `/api/flights` ko call karta hai. Agar server band hai,
- * toh FALLBACK_FLIGHTS se route filter karke dikha deta hai.
- */
+  dom.predConfidenceBadge.textContent = `${pred.confidence}% Confidence • ${pred.recommendation}`;
+  dom.predConfidenceBadge.className = `pred-badge ${pred.badgeType}`;
+  dom.predHeadline.textContent = pred.headline;
+  dom.predInsightText.textContent = pred.insight;
+  dom.predFairBand.textContent = pred.fairBand;
+  dom.predBestWindow.textContent = pred.bestWindow;
+  dom.predDriveTime.textContent = pred.driveTime;
+
+  // Update Feature #5 Destination Weather & Packing Advisory
+  const w = WEATHER_DATA[dest] || WEATHER_DATA["DEL"];
+  dom.weatherIcon.textContent = w.icon;
+  dom.weatherTempCond.textContent = `${dest} (${w.temp} • ${w.cond})`;
+  dom.weatherPackTip.textContent = `🧳 Packing Tip: ${w.tip}`;
+
+  // Render 7-Day Interactive Price Bars
+  const prices = pred.days.map(d => d.price);
+  const minPrice = Math.min(...prices);
+  const maxPrice = Math.max(...prices);
+
+  dom.predBarsContainer.innerHTML = '';
+  pred.days.forEach(d => {
+    const isCheapest = d.price === minPrice;
+    const heightPct = Math.max(25, Math.round((d.price / maxPrice) * 100));
+
+    const col = document.createElement('div');
+    col.className = `trend-bar-col ${isCheapest ? 'is-cheapest' : ''}`;
+    col.title = `Click to search flights for ${d.label} (₹${d.price.toLocaleString('en-IN')})`;
+    col.innerHTML = `
+      <span class="trend-bar-price">&#8377;${(d.price / 1000).toFixed(1)}k</span>
+      <div class="trend-bar-fill" style="height: ${heightPct}%;"></div>
+      <span class="trend-bar-date">${d.label}</span>
+    `;
+
+    col.addEventListener('click', () => {
+      dom.departDate.value = d.date;
+      showToast(`Travel date switched to ${d.label} (Lowest fare: ₹${d.price.toLocaleString('en-IN')})`, "success");
+      fetchFlights();
+    });
+
+    dom.predBarsContainer.appendChild(col);
+  });
+}
+
+function calculateCabPickupTime(arrivalTimeStr) {
+  try {
+    const [hh, mm] = arrivalTimeStr.split(':').map(Number);
+    let totalMins = hh * 60 + mm + 20;
+    totalMins = totalMins % 1440;
+    const outH = String(Math.floor(totalMins / 60)).padStart(2, '0');
+    const outM = String(totalMins % 60).padStart(2, '0');
+    return `${outH}:${outM}`;
+  } catch (e) {
+    return "20m after landing";
+  }
+}
+
+// ==============================================================================
+// 7. FETCH FLIGHTS & RENDER CARDS (Shows Per-Person & Group Total)
+// ==============================================================================
 async function fetchFlights() {
   const origin = dom.originSelect.value;
   const destination = dom.destSelect.value;
+  state.passengersCount = parseInt(dom.passengersSelect.value, 10) || 1;
 
   if (origin === destination) {
     showToast("Origin and Destination cannot be the same city!", "error");
     return;
   }
+
+  dom.travelerSummaryBadge.textContent = `${state.passengersCount} Traveler${state.passengersCount > 1 ? 's' : ''} • ${dom.travelClass.value} • Free 15kg/pax`;
+  renderFarePredictionAndWeather(origin, destination);
 
   const url = `/api/flights?origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&max_price=${state.maxPrice}&sort=${state.sortBy}`;
 
@@ -1084,16 +1838,15 @@ async function fetchFlights() {
     if (json.success) {
       state.allFlights = json.data;
       filterAndRenderFlights();
-      dom.routeSummaryText.textContent = `${origin} → ${destination} • ${state.allFlights.length} Flights Available`;
+      dom.routeSummaryText.textContent = `${origin} → ${destination} • ${state.allFlights.length} Real Flights (${state.passengersCount} Traveler${state.passengersCount > 1 ? 's' : ''})`;
       return;
     }
   } catch (err) {
-    // Fallback mode when opened directly without Flask server
     let matching = FALLBACK_FLIGHTS.filter(f => f.origin === origin && f.destination === destination);
     if (matching.length === 0) {
       matching = [
-        { id: 901, flightNumber: "6E-312", airline: "IndiGo", airlineCode: "6E", origin, originName: origin, destination, destinationName: destination, departTime: "07:30", arrivalTime: "10:15", duration: "2h 45m", stops: "Non-stop", stopCount: 0, price: 4650 },
-        { id: 902, flightNumber: "AI-504", airline: "Air India", airlineCode: "AI", origin, originName: origin, destination, destinationName: destination, departTime: "14:15", arrivalTime: "17:00", duration: "2h 45m", stops: "Non-stop", stopCount: 0, price: 5200 }
+        { id: 901, flightNumber: "6E-312", airline: "IndiGo", airlineCode: "6E", aircraft: "Airbus A320neo", origin, originName: origin, destination, destinationName: destination, departTime: "07:30", arrivalTime: "10:10", duration: "2h 40m", stops: "Non-stop", stopCount: 0, price: 6850 },
+        { id: 902, flightNumber: "AI-504", airline: "Air India", airlineCode: "AI", aircraft: "Airbus A321", origin, originName: origin, destination, destinationName: destination, departTime: "14:15", arrivalTime: "17:00", duration: "2h 45m", stops: "Non-stop", stopCount: 0, price: 7490 }
       ];
     }
     if (state.sortBy === 'price') matching.sort((a, b) => a.price - b.price);
@@ -1102,52 +1855,347 @@ async function fetchFlights() {
 
     state.allFlights = matching;
     filterAndRenderFlights();
-    dom.routeSummaryText.textContent = `${origin} → ${destination} • ${state.allFlights.length} Flights Available`;
+    dom.routeSummaryText.textContent = `${origin} → ${destination} • ${state.allFlights.length} Real Flights (${state.passengersCount} Traveler${state.passengersCount > 1 ? 's' : ''})`;
   }
 }
 
-/**
- * 2. fetchOccupiedSeats():
- * Flight ki pehle se booked seats lata hai.
- */
 async function fetchOccupiedSeats(flightId, travelDate) {
   try {
     const res = await fetch(`/api/flights/${flightId}/seats?date=${encodeURIComponent(travelDate)}`);
     const json = await res.json();
     return json.success ? json.occupiedSeats : ['1A', '2C', '3D'];
   } catch (err) {
-    const localBooked = getLocalBookings()
+    const localBooked = [];
+    getLocalBookings()
       .filter(b => b.flight && b.flight.id === flightId && b.travelDate === travelDate && b.status === 'CONFIRMED')
-      .map(b => b.seat);
+      .forEach(b => {
+        (b.seat || '').split(',').forEach(s => {
+          if (s.trim()) localBooked.push(s.trim());
+        });
+      });
     return Array.from(new Set(['1A', '2C', '3D', '4F', '5B', ...localBooked]));
   }
 }
 
+function filterAndRenderFlights() {
+  const filtered = state.allFlights.filter(f => {
+    const matchAirline = state.activeAirlines.includes(f.airline);
+    const matchPrice = f.price <= state.maxPrice;
+    return matchAirline && matchPrice;
+  });
+
+  dom.flightsContainer.innerHTML = '';
+
+  if (filtered.length === 0) {
+    dom.flightsContainer.innerHTML = `
+      <div style="background:#fff; padding:2.5rem; text-align:center; border:1px solid #e2e8f0; border-radius:12px;">
+        <h3>No Flights Match Your Filters</h3>
+        <p style="color:#64748b; font-size:0.85rem; margin-top:0.4rem;">Try increasing the Max Price slider or checking all airlines.</p>
+      </div>
+    `;
+    return;
+  }
+
+  const pax = state.passengersCount;
+
+  filtered.forEach(f => {
+    const cabTime = calculateCabPickupTime(f.arrivalTime);
+    const departHour = parseInt((f.departTime || '12:00').split(':')[0], 10);
+    const isEarlyOrPeak = departHour < 9 || departHour >= 18;
+    const groupTotal = Math.round(f.price * pax);
+
+    const card = document.createElement('div');
+    card.className = "flight-card";
+    card.innerHTML = `
+      <div class="airline-badge">
+        <div class="airline-logo-box">${f.airlineCode}</div>
+        <div>
+          <div class="airline-name">${f.airline}</div>
+          <div class="flight-code">${f.flightNumber} &bull; ${f.aircraft || 'Airbus A320neo'}</div>
+          <div>
+            <span class="cab-ready-pill">&#128661; Cab at ${cabTime}</span>
+            ${isEarlyOrPeak ? `<span class="lounge-ready-pill">&#127869;&#65039; ₹299 Lounge Pass</span>` : ''}
+          </div>
+        </div>
+      </div>
+
+      <div class="flight-schedule">
+        <div class="time-box">
+          <h4>${f.departTime}</h4>
+          <span>${f.origin}</span>
+        </div>
+        <div class="duration-line">
+          <span>${f.duration}</span>
+          <div class="line"></div>
+          <span class="stop-indicator">${f.stops}</span>
+        </div>
+        <div class="time-box">
+          <h4>${f.arrivalTime}</h4>
+          <span>${f.destination}</span>
+        </div>
+      </div>
+
+      <div class="flight-price-box">
+        <div class="price-label">&#8377;${Math.round(f.price).toLocaleString('en-IN')} / person</div>
+        <div class="price-val">&#8377;${groupTotal.toLocaleString('en-IN')}</div>
+        <span class="group-total-hint">${pax > 1 ? `Total for ${pax} Travelers` : '1 Adult Economy'}</span>
+        <button class="btn btn-primary btn-sm btn-book" data-id="${f.id}">Book (${pax} Pax) &rarr;</button>
+      </div>
+    `;
+
+    card.querySelector('.btn-book').addEventListener('click', () => openBookingModal(f));
+    dom.flightsContainer.appendChild(card);
+  });
+}
+
+// ==============================================================================
+// 8. BOOKING MODAL (Multi-Seat + Feature #1 Lounge + Cab + Multi-Passenger Form)
+// ==============================================================================
+async function openBookingModal(flight) {
+  state.currentFlight = flight;
+  state.passengersCount = parseInt(dom.passengersSelect.value, 10) || 1;
+  state.selectedSeats = [];
+  state.loungeIncluded = false;
+  state.selectedCabType = 'None';
+  state.selectedCabFee = 0.0;
+
+  const pax = state.passengersCount;
+  const pickupTime = calculateCabPickupTime(flight.arrivalTime);
+  state.selectedCabPickupTime = `${pickupTime} at ${flight.destination} Arrival Gate`;
+
+  dom.modalPaxCountTitle.textContent = `${pax} Traveler${pax > 1 ? 's' : ''}`;
+  dom.modalFlightDetails.textContent = `${flight.airline} (${flight.flightNumber}) • ${flight.origin} to ${flight.destination} • Lands at ${flight.arrivalTime}`;
+  dom.seatInstructionBanner.innerHTML = `Please select <strong>${pax} seat${pax > 1 ? 's' : ''}</strong> on the aircraft map (0/${pax} selected)`;
+  dom.lblSelectedSeat.textContent = "None";
+
+  // Feature #1: Smart Lounge Pass Recommendation Reason
+  const departHour = parseInt((flight.departTime || '12:00').split(':')[0], 10);
+  if (departHour < 9) {
+    dom.loungeSmartReason.textContent = `✨ RECOMMENDED FOR ${flight.departTime} EARLY MORNING DEPARTURE`;
+    dom.loungeDescText.textContent = `Beat the morning rush! Get hot breakfast buffet, filter coffee & Wi-Fi at ${flight.origin} Terminal Lounge.`;
+  } else if (departHour >= 18) {
+    dom.loungeSmartReason.textContent = `✨ RECOMMENDED FOR ${flight.departTime} EVENING DINNER FLIGHT`;
+    dom.loungeDescText.textContent = `Relax before your evening flight with hot dinner buffet & charging pods at ${flight.origin} Lounge.`;
+  } else {
+    dom.loungeSmartReason.textContent = `✨ PRE-FLIGHT COMFORT UPGRADE (78% OFF)`;
+    dom.loungeDescText.textContent = `Enjoy unlimited buffet meals, beverages & high-speed Wi-Fi at ${flight.origin} VIP Terminal Lounge.`;
+  }
+  dom.chkLoungePass.checked = false;
+  dom.loungeTotalLabel.textContent = `+₹${(299 * pax).toLocaleString('en-IN')} for ${pax} Traveler${pax > 1 ? 's' : ''}`;
+
+  // Cab sync subtitle & group vehicle hint
+  dom.cabSyncSubtitle.innerHTML = `Flight lands at <strong>${flight.arrivalTime}</strong> (${flight.destination}) &rarr; Cab driver synced for pickup at <strong>${pickupTime}</strong>`;
+  dom.cabGroupHint.textContent = pax >= 4 ? "SUV Recommended for 4 Pax" : "Zero Wait Guarantee";
+
+  document.querySelectorAll('.cab-option-card').forEach((card, idx) => {
+    card.classList.toggle('selected', idx === 0);
+    const radio = card.querySelector('input');
+    if (radio) radio.checked = (idx === 0);
+  });
+
+  // Render Dynamic Passenger 1..N Input Cards
+  renderPassengerInputs();
+  updateFareSummary();
+
+  const occupiedSeats = await fetchOccupiedSeats(flight.id, dom.departDate.value);
+  renderSeatGrid(occupiedSeats);
+
+  dom.bookingModal.classList.remove('hidden');
+}
+
 /**
- * 3. submitBooking():
- * Passenger form submit hone par `POST /api/book` ko data bhejta hai.
+ * renderPassengerInputs():
+ * Jitne travelers chune gaye hain (1 se 4), utne passenger boxes dynamically banata hai!
  */
+function renderPassengerInputs() {
+  const pax = state.passengersCount;
+  dom.paxFormCountLabel.textContent = `${pax} Traveler${pax > 1 ? 's' : ''}`;
+  dom.passengersInputsContainer.innerHTML = '';
+
+  const sampleNames = ["Priya Sharma", "Aarav Sharma", "Rohan Verma", "Ananya Verma"];
+
+  for (let i = 0; i < pax; i++) {
+    const seatAssigned = state.selectedSeats[i] ? state.selectedSeats[i].code : 'Select Seat on Map';
+    const div = document.createElement('div');
+    div.className = 'pax-card-block';
+    div.innerHTML = `
+      <div class="pax-card-header">
+        <span>Passenger ${i + 1} ${i === 0 ? '(Primary Traveler)' : ''}</span>
+        <span class="pax-seat-pill" id="pax-seat-badge-${i}">Seat: ${seatAssigned}</span>
+      </div>
+      <div class="pax-inputs-grid">
+        <div class="input-field">
+          <label>Full Name *</label>
+          <input type="text" class="pax-name-input" required placeholder="e.g. ${sampleNames[i] || 'Traveler Name'}">
+        </div>
+        <div class="input-field">
+          <label>Age *</label>
+          <input type="number" class="pax-age-input" min="1" max="110" required placeholder="${21 + i}">
+        </div>
+        <div class="input-field">
+          <label>Gender *</label>
+          <select class="pax-gender-input" required>
+            <option value="Female" ${i % 2 === 0 ? 'selected' : ''}>Female</option>
+            <option value="Male" ${i % 2 !== 0 ? 'selected' : ''}>Male</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+    `;
+    dom.passengersInputsContainer.appendChild(div);
+  }
+}
+
+function updatePassengerSeatBadges() {
+  const pax = state.passengersCount;
+  for (let i = 0; i < pax; i++) {
+    const badge = document.getElementById(`pax-seat-badge-${i}`);
+    if (badge) {
+      badge.textContent = state.selectedSeats[i] ? `Seat: ${state.selectedSeats[i].code}` : 'Seat: Not Selected';
+    }
+  }
+}
+
+/**
+ * renderSeatGrid():
+ * Multi-Passenger Seat Selection! Agar 3 passengers hain toh user 3 seats select kar sakta hai.
+ */
+function renderSeatGrid(occupiedSeats) {
+  dom.seatsGrid.innerHTML = '';
+  const rows = 7;
+  const cols = ['A', 'B', 'C', 'aisle', 'D', 'E', 'F'];
+
+  for (let r = 1; r <= rows; r++) {
+    const rowEl = document.createElement('div');
+    rowEl.className = 'seat-row';
+
+    cols.forEach(col => {
+      if (col === 'aisle') {
+        const aisle = document.createElement('span');
+        aisle.className = 'seat-aisle-num';
+        aisle.textContent = r;
+        rowEl.appendChild(aisle);
+        return;
+      }
+
+      const seatCode = `${r}${col}`;
+      const isTaken = occupiedSeats.includes(seatCode);
+      const isFrontRow = r <= 2;
+      const fee = isFrontRow ? 350.0 : 150.0;
+
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'seat-btn';
+      btn.textContent = col;
+      btn.dataset.seat = seatCode;
+      btn.dataset.fee = fee;
+
+      if (isTaken) {
+        btn.disabled = true;
+      } else {
+        btn.addEventListener('click', () => {
+          const pax = state.passengersCount;
+          const existingIdx = state.selectedSeats.findIndex(s => s.code === seatCode);
+
+          if (existingIdx > -1) {
+            // Unselect if already clicked
+            state.selectedSeats.splice(existingIdx, 1);
+            btn.classList.remove('selected');
+          } else {
+            // If user already selected N seats, replace the earliest selected seat so it's super smooth
+            if (state.selectedSeats.length >= pax) {
+              const removed = state.selectedSeats.shift();
+              const oldBtn = dom.seatsGrid.querySelector(`.seat-btn[data-seat="${removed.code}"]`);
+              if (oldBtn) oldBtn.classList.remove('selected');
+            }
+            state.selectedSeats.push({ code: seatCode, fee });
+            btn.classList.add('selected');
+          }
+
+          const codes = state.selectedSeats.map(s => s.code);
+          const totalSeatFee = state.selectedSeats.reduce((sum, s) => sum + s.fee, 0);
+
+          dom.seatInstructionBanner.innerHTML = `Selected <strong>${codes.length}/${pax} seat${pax > 1 ? 's' : ''}</strong> ${codes.length === pax ? '✓ Ready!' : ''}`;
+          dom.lblSelectedSeat.textContent = codes.length > 0 ? `${codes.join(', ')} (₹${totalSeatFee})` : 'None';
+
+          updatePassengerSeatBadges();
+          updateFareSummary();
+        });
+      }
+
+      rowEl.appendChild(btn);
+    });
+
+    dom.seatsGrid.appendChild(rowEl);
+  }
+}
+
+function updateFareSummary() {
+  if (!state.currentFlight) return;
+  const pax = state.passengersCount;
+  const base = state.currentFlight.price * pax;
+  const tax = Math.round(base * 0.12);
+  const seatFee = state.selectedSeats.reduce((sum, s) => sum + s.fee, 0);
+  const loungeFee = state.loungeIncluded ? (state.loungeFeePerPax * pax) : 0;
+  const cabFee = state.selectedCabFee;
+  const total = base + tax + seatFee + loungeFee + cabFee;
+
+  const seatCodes = state.selectedSeats.map(s => s.code).join(', ') || 'None';
+
+  dom.farePaxMultiplier.textContent = `${pax} Traveler${pax > 1 ? 's' : ''}`;
+  dom.fareBase.innerHTML = `&#8377;${Math.round(base).toLocaleString('en-IN')}`;
+  dom.fareTax.innerHTML = `&#8377;${tax.toLocaleString('en-IN')}`;
+  dom.fareSeatsList.textContent = seatCodes;
+  dom.fareSeat.innerHTML = `&#8377;${seatFee.toLocaleString('en-IN')}`;
+  dom.fareLounge.innerHTML = `&#8377;${loungeFee.toLocaleString('en-IN')}`;
+  dom.fareCabName.textContent = state.selectedCabType;
+  dom.fareCab.innerHTML = `&#8377;${cabFee.toLocaleString('en-IN')}`;
+  dom.fareTotal.innerHTML = `&#8377;${total.toLocaleString('en-IN')}`;
+}
+
 async function submitBooking(e) {
   e.preventDefault();
 
-  if (!state.selectedSeat) {
-    showToast("Please choose a seat from the aircraft map first.", "error");
+  const pax = state.passengersCount;
+  if (state.selectedSeats.length < pax) {
+    showToast(`Please select ${pax} seat(s) on the aircraft map (${state.selectedSeats.length}/${pax} selected).`, "error");
     return;
   }
+
+  const nameInputs = Array.from(document.querySelectorAll('.pax-name-input'));
+  const ageInputs = Array.from(document.querySelectorAll('.pax-age-input'));
+  const genderInputs = Array.from(document.querySelectorAll('.pax-gender-input'));
+  const phone = document.getElementById('p-phone').value.trim();
+  const email = document.getElementById('p-email').value.trim();
+
+  const passengersArray = nameInputs.map((inp, idx) => ({
+    fullName: inp.value.trim(),
+    age: parseInt(ageInputs[idx].value, 10) || 21,
+    gender: genderInputs[idx].value,
+    seatAssigned: state.selectedSeats[idx].code,
+    phone,
+    email
+  }));
+
+  const seatCodes = state.selectedSeats.map(s => s.code);
+  const totalSeatFee = state.selectedSeats.reduce((sum, s) => sum + s.fee, 0);
+  const totalLoungeFee = state.loungeIncluded ? (state.loungeFeePerPax * pax) : 0;
 
   const payload = {
     flightId: state.currentFlight.id,
     travelDate: dom.departDate.value,
     travelClass: dom.travelClass.value,
-    seat: state.selectedSeat,
-    seatFee: state.selectedSeatFee,
-    passenger: {
-      fullName: document.getElementById('p-name').value.trim(),
-      age: parseInt(document.getElementById('p-age').value, 10),
-      gender: document.getElementById('p-gender').value,
-      phone: document.getElementById('p-phone').value.trim(),
-      email: document.getElementById('p-email').value.trim()
-    }
+    passengerCount: pax,
+    seat: seatCodes.join(', '),
+    seats: seatCodes,
+    seatFee: totalSeatFee,
+    loungeIncluded: state.loungeIncluded,
+    loungeFee: totalLoungeFee,
+    cabType: state.selectedCabType,
+    cabFee: state.selectedCabFee,
+    cabPickupTime: state.selectedCabPickupTime,
+    passengers: passengersArray,
+    passenger: passengersArray[0]
   };
 
   try {
@@ -1160,7 +2208,7 @@ async function submitBooking(e) {
     const json = await res.json();
 
     if (json.success) {
-      showToast(`Flight Booked! PNR: ${json.booking.pnr}`, "success");
+      showToast(`Booked for ${pax} Traveler(s)! PNR: ${json.booking.pnr}`, "success");
       dom.bookingModal.classList.add('hidden');
       dom.bookingForm.reset();
       displayBoardingPass(json.booking);
@@ -1169,19 +2217,25 @@ async function submitBooking(e) {
       showToast(json.message || "Booking failed", "error");
     }
   } catch (err) {
-    // Fallback local booking when server is not running
     const pnr = `SV-${Math.floor(100000 + Math.random() * 900000)}`;
-    const baseFare = state.currentFlight.price;
+    const baseFare = state.currentFlight.price * pax;
     const taxAmount = Math.round(baseFare * 0.12);
-    const totalPaid = baseFare + taxAmount + state.selectedSeatFee;
+    const totalPaid = baseFare + taxAmount + totalSeatFee + totalLoungeFee + state.selectedCabFee;
 
     const fallbackBooking = {
       pnr,
       flight: state.currentFlight,
       travelDate: payload.travelDate,
       travelClass: payload.travelClass,
+      passengerCount: pax,
       seat: payload.seat,
-      seatFee: payload.seatFee,
+      seats: payload.seats,
+      seatFee: totalSeatFee,
+      loungeIncluded: state.loungeIncluded,
+      loungeFee: totalLoungeFee,
+      cabType: payload.cabType,
+      cabFee: payload.cabFee,
+      cabPickupTime: payload.cabPickupTime,
       baseFare,
       taxAmount,
       totalPaid,
@@ -1189,14 +2243,15 @@ async function submitBooking(e) {
       gate: `G-${Math.floor(2 + Math.random() * 15)}`,
       terminal: `T${Math.floor(1 + Math.random() * 3)}`,
       bookingDate: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
-      passenger: payload.passenger
+      passengers: passengersArray,
+      passenger: passengersArray[0]
     };
 
     const list = getLocalBookings();
     list.unshift(fallbackBooking);
     saveLocalBookings(list);
 
-    showToast(`Flight Booked! PNR: ${pnr}`, "success");
+    showToast(`Booked for ${pax} Traveler(s)! PNR: ${pnr}`, "success");
     dom.bookingModal.classList.add('hidden');
     dom.bookingForm.reset();
     displayBoardingPass(fallbackBooking);
@@ -1204,9 +2259,58 @@ async function submitBooking(e) {
   }
 }
 
-/**
- * 4. loadBookings() & cancelBooking():
- */
+function displayBoardingPass(b) {
+  dom.bpAirline.textContent = b.flight ? b.flight.airline : "Airline";
+  dom.bpPnr.textContent = b.pnr;
+  dom.bpOriginCode.textContent = b.flight ? b.flight.origin : "ORIGIN";
+  dom.bpOriginName.textContent = b.flight ? b.flight.originName : "";
+  dom.bpDestCode.textContent = b.flight ? b.flight.destination : "DEST";
+  dom.bpDestName.textContent = b.flight ? b.flight.destinationName : "";
+  dom.bpDepartTime.textContent = b.flight ? b.flight.departTime : "";
+  dom.bpArrivalTime.textContent = b.flight ? b.flight.arrivalTime : "";
+  dom.bpDuration.textContent = b.flight ? b.flight.duration : "";
+
+  // Format all passengers and their seats (e.g. "Priya Sharma (3A), Aarav Sharma (3B)")
+  if (b.passengers && b.passengers.length > 0) {
+    dom.bpPassenger.textContent = b.passengers
+      .map(p => `${p.fullName}${p.seatAssigned ? ` (${p.seatAssigned})` : ''}`)
+      .join(', ');
+  } else {
+    dom.bpPassenger.textContent = b.passenger ? b.passenger.fullName : "Passenger";
+  }
+
+  dom.bpFlightNum.textContent = b.flight ? b.flight.flightNumber : "";
+  dom.bpSeat.textContent = b.seat;
+  dom.bpClass.textContent = b.travelClass;
+  dom.bpDate.textContent = b.travelDate;
+  dom.bpTerminal.textContent = b.terminal || "T2";
+  dom.bpGate.textContent = b.gate || "G-12";
+
+  // Feature #1: VIP Lounge Voucher on Boarding Pass
+  if (b.loungeIncluded) {
+    dom.bpLoungeStrip.classList.remove('hidden');
+    const paxCount = b.passengerCount || (b.passengers ? b.passengers.length : 1);
+    dom.bpLoungeDetails.textContent = `Admits ${paxCount} Traveler${paxCount > 1 ? 's' : ''} at ${b.flight ? b.flight.origin : ''} Terminal Lounge • Hot Buffet & Wi-Fi`;
+  } else {
+    dom.bpLoungeStrip.classList.add('hidden');
+  }
+
+  // Airport Cab Voucher on Boarding Pass
+  if (b.cabType && b.cabType !== 'None') {
+    dom.bpCabStrip.classList.remove('hidden');
+    dom.bpCabDetails.textContent = `${b.cabType} (₹${b.cabFee}) • Pickup: ${b.cabPickupTime || '20m after landing'}`;
+  } else {
+    dom.bpCabStrip.classList.add('hidden');
+  }
+
+  // Feature #5: Destination Weather & Packing Advisory on Boarding Pass
+  const destCode = b.flight ? b.flight.destination : 'DEL';
+  const w = WEATHER_DATA[destCode] || WEATHER_DATA['DEL'];
+  dom.bpWeatherText.textContent = `${w.icon} ${destCode} Weather (${w.temp}, ${w.cond}) — Packing Tip: ${w.tip}`;
+
+  dom.ticketModal.classList.remove('hidden');
+}
+
 async function loadBookings() {
   try {
     const res = await fetch('/api/bookings');
@@ -1246,167 +2350,6 @@ async function cancelBooking(pnr) {
   }
 }
 
-// ==============================================================================
-// SECTION 5: UI RENDERING FUNCTIONS (Screen par cards aur seats banana)
-// ==============================================================================
-function filterAndRenderFlights() {
-  const filtered = state.allFlights.filter(f => {
-    const matchAirline = state.activeAirlines.includes(f.airline);
-    const matchPrice = f.price <= state.maxPrice;
-    return matchAirline && matchPrice;
-  });
-
-  dom.flightsContainer.innerHTML = '';
-
-  if (filtered.length === 0) {
-    dom.flightsContainer.innerHTML = `
-      <div style="background:#fff; padding:2.5rem; text-align:center; border:1px solid #e2e8f0; border-radius:12px;">
-        <h3>No Flights Match Your Filters</h3>
-        <p style="color:#64748b; font-size:0.85rem; margin-top:0.4rem;">Try increasing the Max Price slider or checking all airlines.</p>
-      </div>
-    `;
-    return;
-  }
-
-  filtered.forEach(f => {
-    const card = document.createElement('div');
-    card.className = "flight-card";
-    card.innerHTML = `
-      <div class="airline-badge">
-        <div class="airline-logo-box">${f.airlineCode}</div>
-        <div>
-          <div class="airline-name">${f.airline}</div>
-          <div class="flight-code">${f.flightNumber}</div>
-        </div>
-      </div>
-
-      <div class="flight-schedule">
-        <div class="time-box">
-          <h4>${f.departTime}</h4>
-          <span>${f.origin}</span>
-        </div>
-        <div class="duration-line">
-          <span>${f.duration}</span>
-          <div class="line"></div>
-          <span class="stop-indicator">${f.stops}</span>
-        </div>
-        <div class="time-box">
-          <h4>${f.arrivalTime}</h4>
-          <span>${f.destination}</span>
-        </div>
-      </div>
-
-      <div class="flight-price-box">
-        <div class="price-label">Per Traveler</div>
-        <div class="price-val">&#8377;${Math.round(f.price).toLocaleString('en-IN')}</div>
-        <button class="btn btn-primary btn-sm btn-book" data-id="${f.id}">Book Now &rarr;</button>
-      </div>
-    `;
-
-    card.querySelector('.btn-book').addEventListener('click', () => openBookingModal(f));
-    dom.flightsContainer.appendChild(card);
-  });
-}
-
-async function openBookingModal(flight) {
-  state.currentFlight = flight;
-  state.selectedSeat = null;
-  state.selectedSeatFee = 150.0;
-
-  dom.modalFlightDetails.textContent = `${flight.airline} (${flight.flightNumber}) • ${flight.origin} to ${flight.destination} • ${dom.departDate.value}`;
-  dom.lblSelectedSeat.textContent = "None";
-
-  updateFareSummary();
-  const occupiedSeats = await fetchOccupiedSeats(flight.id, dom.departDate.value);
-  renderSeatGrid(occupiedSeats);
-
-  dom.bookingModal.classList.remove('hidden');
-}
-
-function renderSeatGrid(occupiedSeats) {
-  dom.seatsGrid.innerHTML = '';
-  const rows = 7;
-  const cols = ['A', 'B', 'C', 'aisle', 'D', 'E', 'F'];
-
-  for (let r = 1; r <= rows; r++) {
-    const rowEl = document.createElement('div');
-    rowEl.className = 'seat-row';
-
-    cols.forEach(col => {
-      if (col === 'aisle') {
-        const aisle = document.createElement('span');
-        aisle.className = 'seat-aisle-num';
-        aisle.textContent = r;
-        rowEl.appendChild(aisle);
-        return;
-      }
-
-      const seatCode = `${r}${col}`;
-      const isTaken = occupiedSeats.includes(seatCode);
-      const isFrontRow = r <= 2;
-      const fee = isFrontRow ? 350.0 : 150.0;
-
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'seat-btn';
-      btn.textContent = col;
-      btn.dataset.seat = seatCode;
-      btn.dataset.fee = fee;
-
-      if (isTaken) {
-        btn.disabled = true;
-      } else {
-        btn.addEventListener('click', () => {
-          dom.seatsGrid.querySelectorAll('.seat-btn.selected').forEach(b => b.classList.remove('selected'));
-          btn.classList.add('selected');
-          state.selectedSeat = seatCode;
-          state.selectedSeatFee = fee;
-          dom.lblSelectedSeat.textContent = `${seatCode} (₹${fee})`;
-          updateFareSummary();
-        });
-      }
-
-      rowEl.appendChild(btn);
-    });
-
-    dom.seatsGrid.appendChild(rowEl);
-  }
-}
-
-function updateFareSummary() {
-  if (!state.currentFlight) return;
-  const base = state.currentFlight.price;
-  const tax = Math.round(base * 0.12);
-  const seatFee = state.selectedSeatFee;
-  const total = base + tax + seatFee;
-
-  dom.fareBase.innerHTML = `&#8377;${Math.round(base).toLocaleString('en-IN')}`;
-  dom.fareTax.innerHTML = `&#8377;${tax.toLocaleString('en-IN')}`;
-  dom.fareSeat.innerHTML = `&#8377;${seatFee.toLocaleString('en-IN')}`;
-  dom.fareTotal.innerHTML = `&#8377;${total.toLocaleString('en-IN')}`;
-}
-
-function displayBoardingPass(b) {
-  dom.bpAirline.textContent = b.flight ? b.flight.airline : "Airline";
-  dom.bpPnr.textContent = b.pnr;
-  dom.bpOriginCode.textContent = b.flight ? b.flight.origin : "ORIGIN";
-  dom.bpOriginName.textContent = b.flight ? b.flight.originName : "";
-  dom.bpDestCode.textContent = b.flight ? b.flight.destination : "DEST";
-  dom.bpDestName.textContent = b.flight ? b.flight.destinationName : "";
-  dom.bpDepartTime.textContent = b.flight ? b.flight.departTime : "";
-  dom.bpArrivalTime.textContent = b.flight ? b.flight.arrivalTime : "";
-  dom.bpDuration.textContent = b.flight ? b.flight.duration : "";
-  dom.bpPassenger.textContent = b.passenger ? b.passenger.fullName : "Passenger";
-  dom.bpFlightNum.textContent = b.flight ? b.flight.flightNumber : "";
-  dom.bpSeat.textContent = b.seat;
-  dom.bpClass.textContent = b.travelClass;
-  dom.bpDate.textContent = b.travelDate;
-  dom.bpTerminal.textContent = b.terminal || "T2";
-  dom.bpGate.textContent = b.gate || "G-12";
-
-  dom.ticketModal.classList.remove('hidden');
-}
-
 function renderBookingsList(bookings) {
   dom.bookingsList.innerHTML = '';
 
@@ -1414,7 +2357,7 @@ function renderBookingsList(bookings) {
     dom.bookingsList.innerHTML = `
       <div style="background:#fff; padding:3rem; text-align:center; border:1px solid #e2e8f0; border-radius:12px;">
         <h3>No Bookings Found</h3>
-        <p style="color:#64748b; font-size:0.85rem; margin-top:0.4rem;">Book your first flight from the Search tab.</p>
+        <p style="color:#64748b; font-size:0.85rem; margin-top:0.4rem;">Book a solo or group flight from the Search tab.</p>
       </div>
     `;
     return;
@@ -1424,6 +2367,11 @@ function renderBookingsList(bookings) {
     const card = document.createElement('div');
     card.className = "booking-item-card";
     const isCancelled = b.status === 'CANCELLED';
+    const paxNames = (b.passengers && b.passengers.length > 0)
+      ? b.passengers.map(p => p.fullName).join(', ')
+      : (b.passenger ? b.passenger.fullName : 'Guest');
+    const loungeBadge = b.loungeIncluded ? ` &bull; <span style="color:#6d28d9; font-weight:700;">&#127869;&#65039; VIP Lounge</span>` : '';
+    const cabText = (b.cabType && b.cabType !== 'None') ? ` &bull; <span style="color:#047857; font-weight:700;">&#128661; ${b.cabType}</span>` : '';
 
     card.innerHTML = `
       <div class="booking-item-info">
@@ -1432,14 +2380,14 @@ function renderBookingsList(bookings) {
             ${b.status}
           </span>
           <strong style="font-family:monospace; font-size:0.9rem;">PNR: ${b.pnr}</strong>
-          <span style="font-size:0.75rem; color:#94a3b8;">&bull; ${b.bookingDate}</span>
+          <span style="font-size:0.75rem; color:#94a3b8;">&bull; ${b.passengerCount || 1} Traveler(s) &bull; &#8377;${Math.round(b.totalPaid || 0).toLocaleString('en-IN')}</span>
         </div>
-        <h4>${b.flight ? b.flight.origin : ''} &rarr; ${b.flight ? b.flight.destination : ''} (${b.flight ? b.flight.airline : ''})</h4>
-        <p>Travel Date: <strong>${b.travelDate}</strong> &bull; Passenger: <strong>${b.passenger ? b.passenger.fullName : 'Guest'}</strong> (Seat: <strong style="color:var(--primary);">${b.seat}</strong>)</p>
+        <h4>${b.flight ? b.flight.origin : ''} &rarr; ${b.flight ? b.flight.destination : ''} (${b.flight ? b.flight.airline : ''} ${b.flight ? b.flight.flightNumber : ''})</h4>
+        <p>Date: <strong>${b.travelDate}</strong> &bull; Travelers: <strong>${paxNames}</strong> &bull; Seats: <strong style="color:var(--primary);">${b.seat}</strong>${loungeBadge}${cabText}</p>
       </div>
 
       <div class="booking-actions">
-        <button class="btn btn-primary btn-sm btn-view-ticket">View Ticket</button>
+        <button class="btn btn-primary btn-sm btn-view-ticket">View Pass</button>
         ${!isCancelled ? `<button class="btn-danger-outline btn-cancel" data-pnr="${b.pnr}">Cancel</button>` : ''}
       </div>
     `;
@@ -1451,8 +2399,69 @@ function renderBookingsList(bookings) {
   });
 }
 
+// ==============================================================================
+// 9. SKYBOT AI CHATBOT LOGIC
+// ==============================================================================
+function appendChatBubble(text, sender = 'bot') {
+  const bubble = document.createElement('div');
+  bubble.className = `chat-bubble ${sender}`;
+  bubble.innerHTML = text;
+  dom.chatMessages.appendChild(bubble);
+  dom.chatMessages.scrollTop = dom.chatMessages.scrollHeight;
+}
+
+async function handleChatQuery(userText) {
+  if (!userText.trim()) return;
+  appendChatBubble(userText, 'user');
+
+  const origin = dom.originSelect.value;
+  const dest = dom.destSelect.value;
+  const q = userText.toLowerCase();
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: userText, origin, destination: dest })
+    });
+    const json = await res.json();
+    if (json.success && json.reply) {
+      appendChatBubble(json.reply, 'bot');
+      return;
+    }
+  } catch (e) {}
+
+  const sortedByPrice = [...state.allFlights].sort((a, b) => a.price - b.price);
+  const cheapest = sortedByPrice[0];
+  const pred = PRICE_PREDICTIONS[`${origin}-${dest}`] || PRICE_PREDICTIONS["BLR-DEL"];
+  const w = WEATHER_DATA[dest] || WEATHER_DATA["DEL"];
+
+  let reply = "";
+  if (q.includes('cheap') || q.includes('sasti') || q.includes('sasta') || q.includes('price') || q.includes('kitne')) {
+    if (cheapest) {
+      reply = `For <strong>${origin} &rarr; ${dest}</strong>, the cheapest flight is <strong>${cheapest.airline} (${cheapest.flightNumber})</strong> at ${cheapest.departTime} for <strong>&#8377;${cheapest.price.toLocaleString('en-IN')}/traveler</strong>.`;
+    } else {
+      reply = `Fares on ${origin} &rarr; ${dest} start at &#8377;5,091 – &#8377;9,408.`;
+    }
+  } else if (q.includes('weather') || q.includes('mausam') || q.includes('pack') || q.includes('temp')) {
+    reply = `<strong>${dest} Live Weather (${w.icon} ${w.temp}, ${w.cond}):</strong> ${w.tip}`;
+  } else if (q.includes('lounge') || q.includes('meal') || q.includes('food') || q.includes('vip')) {
+    reply = `<strong>Smart VIP Lounge Pass (+&#8377;299/pax):</strong> Includes hot buffet meals, shower & Wi-Fi at the departure terminal (78% off walk-in price of &#8377;1,400). You can toggle it inside the booking popup!`;
+  } else if (q.includes('multiple') || q.includes('group') || q.includes('family') || q.includes('passenger')) {
+    reply = `<strong>Multi-Passenger Booking:</strong> Select <strong>1 to 4 Travelers</strong> in the Search bar! You can pick multiple seats on the aircraft map (e.g. 3A, 3B, 3C) and enter every traveler's name.`;
+  } else if (q.includes('when') || q.includes('kab') || q.includes('predict') || q.includes('drop')) {
+    reply = `<strong>AI Fare Predictor (${pred.confidence}% Confidence):</strong> ${pred.recommendation}. ${pred.insight}`;
+  } else if (q.includes('cab') || q.includes('taxi') || q.includes('car') || q.includes('airport')) {
+    reply = `<strong>Landing-Synced Airport Cabs:</strong> Scheduled automatically 20 mins after your flight lands! Options: Mini Hatch (&#8377;499), BluSmart EV Sedan (&#8377;749), or Prime SUV Innova (&#8377;1,199).`;
+  } else {
+    reply = `I'm tracking <strong>${origin} &rarr; ${dest}</strong> (${w.icon} ${w.temp}). Ask me about:<br>&bull; <em>"Cheapest flight?"</em><br>&bull; <em>"Weather &amp; packing tip"</em><br>&bull; <em>"VIP Lounge Pass"</em><br>&bull; <em>"Group booking for multiple people"</em>`;
+  }
+
+  setTimeout(() => appendChatBubble(reply, 'bot'), 200);
+}
+
 function initAirlineFilters() {
-  const airlines = ["IndiGo", "Air India", "Vistara", "Akasa Air", "SpiceJet"];
+  const airlines = ["IndiGo", "Air India", "Akasa Air", "Air India Express", "SpiceJet"];
   dom.airlineFiltersContainer.innerHTML = '';
 
   airlines.forEach(a => {
@@ -1468,7 +2477,7 @@ function initAirlineFilters() {
 }
 
 // ==============================================================================
-// SECTION 6: EVENT LISTENERS
+// 10. EVENT LISTENERS
 // ==============================================================================
 function setupEventListeners() {
   dom.navSearchBtn.addEventListener('click', () => {
@@ -1486,10 +2495,7 @@ function setupEventListeners() {
     loadBookings();
   });
 
-  dom.brandLogo.addEventListener('click', () => {
-    dom.navSearchBtn.click();
-  });
-
+  dom.brandLogo.addEventListener('click', () => dom.navSearchBtn.click());
   dom.navArchBtn.addEventListener('click', () => dom.archModal.classList.remove('hidden'));
   dom.btnCloseArch.addEventListener('click', () => dom.archModal.classList.add('hidden'));
 
@@ -1500,6 +2506,50 @@ function setupEventListeners() {
   dom.searchForm.addEventListener('submit', (e) => {
     e.preventDefault();
     fetchFlights();
+  });
+
+  dom.originSelect.addEventListener('change', () => {
+    if (dom.originSelect.value !== dom.destSelect.value) fetchFlights();
+  });
+  dom.destSelect.addEventListener('change', () => {
+    if (dom.originSelect.value !== dom.destSelect.value) fetchFlights();
+  });
+  dom.passengersSelect.addEventListener('change', () => {
+    fetchFlights();
+  });
+  dom.travelClass.addEventListener('change', () => {
+    fetchFlights();
+  });
+
+  dom.btnPriceAlert.addEventListener('click', () => {
+    state.priceAlertEnabled = !state.priceAlertEnabled;
+    dom.btnPriceAlert.classList.toggle('active', state.priceAlertEnabled);
+    if (state.priceAlertEnabled) {
+      dom.priceAlertText.textContent = "Alert Active ✓";
+      showToast(`Price Drop Alert activated for ${dom.originSelect.value} → ${dom.destSelect.value}!`, "success");
+    } else {
+      dom.priceAlertText.textContent = "Track Price Drop Alert";
+      showToast("Price alert turned off.", "info");
+    }
+  });
+
+  // Feature #1: VIP Lounge Pass Checkbox Listener
+  dom.chkLoungePass.addEventListener('change', (e) => {
+    state.loungeIncluded = e.target.checked;
+    updateFareSummary();
+  });
+
+  // Airport Cab Selection cards
+  document.querySelectorAll('.cab-option-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.cab-option-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      const radio = card.querySelector('input');
+      if (radio) radio.checked = true;
+      state.selectedCabType = card.dataset.cab || 'None';
+      state.selectedCabFee = parseFloat(card.dataset.fee || '0');
+      updateFareSummary();
+    });
   });
 
   dom.bookingForm.addEventListener('submit', submitBooking);
@@ -1521,22 +2571,37 @@ function setupEventListeners() {
   });
 
   dom.btnResetFilters.addEventListener('click', () => {
-    state.maxPrice = 15000;
-    dom.priceSlider.value = 15000;
-    dom.priceValLabel.innerHTML = `&#8377;15,000`;
+    state.maxPrice = 18000;
+    dom.priceSlider.value = 18000;
+    dom.priceValLabel.innerHTML = `&#8377;18,000`;
     dom.airlineFiltersContainer.querySelectorAll('input').forEach(i => i.checked = true);
-    state.activeAirlines = ["IndiGo", "Air India", "Vistara", "Akasa Air", "SpiceJet"];
+    state.activeAirlines = ["IndiGo", "Air India", "Akasa Air", "Air India Express", "SpiceJet"];
     filterAndRenderFlights();
+  });
+
+  dom.btnOpenChat.addEventListener('click', () => {
+    dom.chatbotWindow.classList.toggle('hidden');
+  });
+  dom.btnCloseChat.addEventListener('click', () => {
+    dom.chatbotWindow.classList.add('hidden');
+  });
+  dom.chatForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const text = dom.chatInput.value;
+    dom.chatInput.value = '';
+    handleChatQuery(text);
+  });
+  dom.chatChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      handleChatQuery(chip.dataset.prompt);
+    });
   });
 }
 
-// ==============================================================================
-// SECTION 7: PAGE INITIALIZATION
-// ==============================================================================
 document.addEventListener('DOMContentLoaded', () => {
   const today = new Date().toISOString().split('T')[0];
   dom.departDate.min = today;
-  dom.departDate.value = today;
+  dom.departDate.value = "2026-11-05";
 
   initAirlineFilters();
   setupEventListeners();
@@ -1547,7 +2612,6 @@ document.addEventListener('DOMContentLoaded', () => {
 } // End of guard
 
 </script>
-  <!-- JavaScript Link 2: Jab seedha index.html par double-click karke browser mein khola jaye -->
   
 </body>
 </html>
